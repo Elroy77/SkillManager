@@ -10,11 +10,13 @@ namespace vhec.SkillInventory.DAL.Entities
     public class Skill
     {
         [Key]
-        public int Skill_Id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(250)]
         [Required]
         public string Name { get; set; }
         public DateTime DayCreated { get; set; }
+        public virtual ICollection<DetailSkill> detailSkills { get; set; }
+
     }
 }

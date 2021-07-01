@@ -19,6 +19,29 @@ namespace vhec.SkillInventory.DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.DetailSkill", b =>
+                {
+                    b.Property<int>("IdDetail")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("EmployeeID")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("SkillID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdDetail", "EmployeeID", "SkillID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.HasIndex("SkillID");
+
+                    b.ToTable("detailSkills");
+                });
+
             modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Employee", b =>
                 {
                     b.Property<Guid>("Id")
@@ -28,9 +51,6 @@ namespace vhec.SkillInventory.DAL.Migrations
                     b.Property<DateTime>("DayCreated")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("Experience")
-                        .HasColumnType("integer");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -39,19 +59,17 @@ namespace vhec.SkillInventory.DAL.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("SkillId")
+                    b.Property<int>("JobPosition")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SkillId");
 
                     b.ToTable("employees");
                 });
 
             modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Skill", b =>
                 {
-                    b.Property<int>("Skill_Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -64,18 +82,38 @@ namespace vhec.SkillInventory.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.HasKey("Skill_Id");
+                    b.HasKey("Id");
 
                     b.ToTable("skills");
                 });
 
-            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Employee", b =>
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.DetailSkill", b =>
                 {
+                    b.HasOne("vhec.SkillInventory.DAL.Entities.Employee", "Employee")
+                        .WithMany("detailSkills")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("vhec.SkillInventory.DAL.Entities.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId");
+                        .WithMany("detailSkills")
+                        .HasForeignKey("SkillID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
 
                     b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Employee", b =>
+                {
+                    b.Navigation("detailSkills");
+                });
+
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Skill", b =>
+                {
+                    b.Navigation("detailSkills");
                 });
 #pragma warning restore 612, 618
         }

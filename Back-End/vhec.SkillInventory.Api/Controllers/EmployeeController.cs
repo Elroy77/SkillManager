@@ -28,9 +28,8 @@ namespace vhec.SkillInventory.Api.Controllers
                     {
                         EmployeeId = employee.Id,
                         FullName = employee.FullName,
-                        Skill = employee.Skill,
-                        Experience = employee.Experience,
                         Gender = employee.Gender,
+                        JobPosition = employee.JobPosition,
                         DayCreated = employee.DayCreated
                     };
                     employeesList.Add(employeeView);

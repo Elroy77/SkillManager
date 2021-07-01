@@ -17,12 +17,13 @@ namespace vhec.SkillInventory.DAL.Entities
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
-
-        public int? SkillId { set; get; }
-        public Skill Skill { get; set; }
         [Required]
-        public int Experience { get; set; }
         public Gender Gender { get; set; }
+
+        public JobPosition JobPosition { get; set; }
+
         public DateTime DayCreated { get; set; }
+
+        public virtual ICollection<DetailSkill> detailSkills { get; set; }
     }
 }

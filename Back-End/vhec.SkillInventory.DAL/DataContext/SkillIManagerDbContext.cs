@@ -14,6 +14,21 @@ namespace vhec.SkillInventory.DAL.DataContext
         {
 
         }
+        protected override void
+        OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DetailSkill>()
+           .HasKey(e => new { e.IdDetail, e.EmployeeID, e.SkillID });
+            modelBuilder.Entity<DetailSkill>()
+            .HasOne(pt => pt.Employee)
+            .WithMany(p => p.detailSkills)
+            .HasForeignKey(pt => pt.EmployeeID);
+
+            modelBuilder.Entity<DetailSkill>()
+                .HasOne(pt => pt.Skill)
+                .WithMany(t => t.detailSkills)
+                .HasForeignKey(pt => pt.SkillID);
+        }
         public class OptionsBuild
         {
             public OptionsBuild()
@@ -30,5 +45,6 @@ namespace vhec.SkillInventory.DAL.DataContext
         public static OptionsBuild ops = new OptionsBuild();
         public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> skills { get; set; }
+        public DbSet<DetailSkill> detailSkills { get; set; }
     }
 }

@@ -11,8 +11,7 @@ namespace vhec.SkillInventory.Api.Models
     {
         public Guid EmployeeId { get; set; }
         public string FullName { get; set; }
-        public Skill Skill { get; set; }
-        public int Experience { get; set; }
+        public JobPosition JobPosition { get; set; }
         public Gender Gender { get; set; }
         public DateTime DayCreated { get; set; }
     }
