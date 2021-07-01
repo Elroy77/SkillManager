@@ -18,9 +18,4 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Repositories\Functions\" />
-  </ItemGroup>
-
 </Project>

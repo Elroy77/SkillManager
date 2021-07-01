@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,10 @@ namespace vhec.SkillInventory.DAL.Entities
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
-        
-        [MaxLength(250)]
+        [ForeignKey("SkillId")]
+        public Skill Skill { get; set; }
         [Required]
-        public string Skill {get;set;}
-
-        [Required]
+        public int Experience { get; set; }
         public Gender Gender { get; set; }
         public DateTime DayCreated { get; set; }
     }

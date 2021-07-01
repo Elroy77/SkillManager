@@ -28,5 +28,6 @@ namespace vhec.SkillInventory.DAL.DataContext
             public DbContextOptions<SkillIManagerDbContext> dbOptions { get; set; }
         }
         public DbSet<Employee> employees { get; set; }
+        public DbSet<Skill> skills { get; set; }
     }
 }

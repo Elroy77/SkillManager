@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using vhec.SkillInventory.DAL.DataContext;
@@ -9,9 +10,10 @@ using vhec.SkillInventory.DAL.DataContext;
 namespace vhec.SkillInventory.DAL.Migrations
 {
     [DbContext(typeof(SkillIManagerDbContext))]
-    partial class SkillIManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210701203519_UpdateTable")]
+    partial class UpdateTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace vhec.SkillInventory.DAL.Migrations
 
                     b.Property<DateTime>("DayCreated")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("integer");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -57,6 +56,9 @@ namespace vhec.SkillInventory.DAL.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
