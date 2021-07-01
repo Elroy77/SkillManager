@@ -16,6 +16,10 @@ namespace vhec.SkillInventory.DAL.Entities
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
+        
+        [MaxLength(250)]
+        [Required]
+        public string Skill {get;set;}
 
         [Required]
         public Gender Gender { get; set; }
