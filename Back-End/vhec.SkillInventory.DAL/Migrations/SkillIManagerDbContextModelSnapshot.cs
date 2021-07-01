@@ -39,8 +39,8 @@ namespace vhec.SkillInventory.DAL.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("SkillId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("SkillId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -51,11 +51,12 @@ namespace vhec.SkillInventory.DAL.Migrations
 
             modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Skill", b =>
                 {
-                    b.Property<Guid>("SkillId")
+                    b.Property<int>("Skill_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime>("DayCreated")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -63,7 +64,7 @@ namespace vhec.SkillInventory.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.HasKey("SkillId");
+                    b.HasKey("Skill_Id");
 
                     b.ToTable("skills");
                 });

@@ -14,19 +14,20 @@ namespace vhec.SkillInventory.DAL.DataContext
         {
 
         }
-        public class OptionsBuilder
+        public class OptionsBuild
         {
-            public OptionsBuilder()
+            public OptionsBuild()
             {
                 settings = new AppConfiguration();
-                optionsBuilder = new DbContextOptionsBuilder<SkillIManagerDbContext>();
-                optionsBuilder.UseNpgsql(settings.sqlConnectionString);
-                dbOptions = optionsBuilder.Options;
+                opsBuilder = new DbContextOptionsBuilder<SkillIManagerDbContext>();
+                opsBuilder.UseNpgsql(settings.sqlConnectionString);
+                dbOptions = opsBuilder.Options;
             }
             private AppConfiguration settings { get; set; }
-            public DbContextOptionsBuilder<SkillIManagerDbContext> optionsBuilder { get; set; }
+            public DbContextOptionsBuilder<SkillIManagerDbContext> opsBuilder { get; set; }
             public DbContextOptions<SkillIManagerDbContext> dbOptions { get; set; }
         }
+        public static OptionsBuild ops = new OptionsBuild();
         public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> skills { get; set; }
     }

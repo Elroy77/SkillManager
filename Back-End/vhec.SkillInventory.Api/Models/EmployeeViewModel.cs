@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Enums;
 
-namespace vhec.SkillInventory.DAL.Entities
+namespace vhec.SkillInventory.Api.Models
 {
-    public class Employee
+    public class EmployeeViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        [MaxLength(250)]
-        [Required]
+        public Guid EmployeeId { get; set; }
         public string FullName { get; set; }
-
-        public int? SkillId { set; get; }
         public Skill Skill { get; set; }
-        [Required]
         public int Experience { get; set; }
         public Gender Gender { get; set; }
         public DateTime DayCreated { get; set; }

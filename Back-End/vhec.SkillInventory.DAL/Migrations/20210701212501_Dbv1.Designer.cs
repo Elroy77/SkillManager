@@ -10,8 +10,8 @@ using vhec.SkillInventory.DAL.DataContext;
 namespace vhec.SkillInventory.DAL.Migrations
 {
     [DbContext(typeof(SkillIManagerDbContext))]
-    [Migration("20210701182552_Initial")]
-    partial class Initial
+    [Migration("20210701212501_Dbv1")]
+    partial class Dbv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,9 @@ namespace vhec.SkillInventory.DAL.Migrations
                     b.Property<DateTime>("DayCreated")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("Experience")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -38,9 +41,43 @@ namespace vhec.SkillInventory.DAL.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("SkillId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("SkillId");
+
                     b.ToTable("employees");
+                });
+
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Skill", b =>
+                {
+                    b.Property<int>("Skill_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.HasKey("Skill_Id");
+
+                    b.ToTable("skills");
+                });
+
+            modelBuilder.Entity("vhec.SkillInventory.DAL.Entities.Employee", b =>
+                {
+                    b.HasOne("vhec.SkillInventory.DAL.Entities.Skill", "Skill")
+                        .WithMany()
+                        .HasForeignKey("SkillId");
+
+                    b.Navigation("Skill");
                 });
 #pragma warning restore 612, 618
         }
