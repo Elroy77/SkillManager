@@ -1,0 +1,15 @@
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\vhec.SkillInventory.Logic.deps.json
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\vhec.SkillInventory.Logic.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\ref\vhec.SkillInventory.Logic.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\vhec.SkillInventory.Logic.pdb
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\vhec.SkillInventory.DAL.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\bin\Debug\net5.0\vhec.SkillInventory.DAL.pdb
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.csproj.AssemblyReference.cache
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.GeneratedMSBuildEditorConfig.editorconfig
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.AssemblyInfoInputs.cache
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.AssemblyInfo.cs
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.csproj.CoreCompileInputs.cache
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.csproj.CopyComplete
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\ref\vhec.SkillInventory.Logic.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Logic\obj\Debug\net5.0\vhec.SkillInventory.Logic.pdb
