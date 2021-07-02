@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using vhec.SkillInventory.DAL.Repositories.Functions;
+using vhec.SkillInventory.DAL.Repositories.Interfaces;
 
 namespace vhec.SkillInventory.Api
 {
@@ -32,7 +34,7 @@ namespace vhec.SkillInventory.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "vhec.SkillInventory.Api", Version = "v1" });
             });
-
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

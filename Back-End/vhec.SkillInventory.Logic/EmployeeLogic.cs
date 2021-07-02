@@ -17,16 +17,17 @@ namespace vhec.SkillInventory.Logic
             return await _employee.GetAllEmployees();
         }
 
+        public async Task<Employee> GetByIdAsync(Guid id)
+        {
+            var result = await _employee.GetById(id);
+            return result;
+        }
+
         public async Task<Boolean> CreateEmployeeAsync(DAL.Entities.Employee employee)
         {
             var result = await _employee.CreateEmployee(employee);
                 return true;
         }
 
-        //public async Task<IEnumerable<Employee>> GetEmployeeAsync(Guid id)
-        //{
-        //    var result = 
-        //    return await _employee.GetEmployee(id);
-        //}
     }
 }

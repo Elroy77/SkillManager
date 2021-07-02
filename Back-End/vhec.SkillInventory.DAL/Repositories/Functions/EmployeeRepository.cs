@@ -21,6 +21,13 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             }
             return employees;
         }
+        public async Task<Employee> GetById(Guid id)
+        {
+            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
+            {
+                return await context.employees.FindAsync(id);
+            }
+        }
         public async Task<Employee> CreateEmployee(Employee employee)
         {
             Employee newemployee = new Employee()
@@ -38,14 +45,6 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
                 await context.SaveChangesAsync();
             }
             return newemployee;
-        }
-
-        public async Task<Employee> GetEmployee(Guid id)
-        {
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                return await context.employees.FindAsync(id);
-            }
         }
     }
 }
