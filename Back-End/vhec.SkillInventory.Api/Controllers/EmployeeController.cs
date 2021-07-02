@@ -55,7 +55,7 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("delete/{id}")]
         public async Task<Boolean> DeleteEmployee([FromRoute] Guid id)
         {
             var getId = await EmployeeLogic.GetByIdAsync(id);
