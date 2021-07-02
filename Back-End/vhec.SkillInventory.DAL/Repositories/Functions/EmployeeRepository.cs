@@ -46,7 +46,15 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             }
             return newemployee;
         }
-
+        public async Task<Employee> UpdateEmployee(Employee employee)
+        {
+            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
+            {
+                context.employees.Update(employee);
+                await context.SaveChangesAsync();
+            }
+            return employee;
+        }
         public async Task<Employee> DeleteEmployee(Employee employee)
         {
             using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
@@ -56,24 +64,5 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             }
             return employee;
         }
-
-        //public async Task<Employee> UpdateEmployee(Employee employee)
-        //{
-        //    Employee updateemployee = new Employee()
-        //    {
-        //        Id = employee.Id,
-        //        FullName = employee.FullName,
-        //        Gender = employee.Gender,
-        //        JobPosition = employee.JobPosition,
-        //        DayCreated = employee.DayCreated,
-        //        detailSkills = employee.detailSkills
-        //    };
-        //    using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-        //    {
-        //        await context.employees.Update(updateemployee);
-        //        await context.SaveChangesAsync();
-        //    }
-        //    return updateemployee;
-        //}
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using vhec.SkillInventory.Api.Models;
+using vhec.SkillInventory.Api.Models.EmployeeRequest;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
 using vhec.SkillInventory.Logic;
@@ -51,6 +52,19 @@ namespace vhec.SkillInventory.Api.Controllers
         public async Task<Boolean> CreateEmployee(Employee employee)
         {
             bool result = await EmployeeLogic.CreateEmployeeAsync(employee);
+            return result;
+        }
+
+        [Route("update/{id}")]
+        [HttpPut]
+        public async Task<Boolean> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
+        {
+            var employeefromDb = await EmployeeLogic.GetByIdAsync(id);
+            if (employeefromDb == null) return false;
+            employeefromDb.FullName = request.FullName;
+            employeefromDb.Gender = request.Gender;
+            employeefromDb.JobPosition = request.JobPosition;
+            bool result = await EmployeeLogic.UpdateEmployeeAsync(employeefromDb);
             return result;
         }
 

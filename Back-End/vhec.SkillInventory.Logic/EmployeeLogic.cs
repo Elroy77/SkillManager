@@ -28,7 +28,11 @@ namespace vhec.SkillInventory.Logic
             var result = await _employee.CreateEmployee(employee);
                 return true;
         }
-
+        public async Task<Boolean> UpdateEmployeeAsync(DAL.Entities.Employee employee)
+        {
+            var result = await _employee.UpdateEmployee(employee);
+            return true;
+        }
         public async Task<Boolean> DeleteEmployeeAsync(DAL.Entities.Employee employee)
         {
             var result = await _employee.DeleteEmployee(employee);
