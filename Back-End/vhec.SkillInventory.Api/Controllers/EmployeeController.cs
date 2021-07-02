@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using vhec.SkillInventory.Api.Models;
+using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.Logic;
 
 namespace vhec.SkillInventory.Api.Controllers
@@ -14,14 +15,12 @@ namespace vhec.SkillInventory.Api.Controllers
     public class EmployeeController : ControllerBase
     {
         private EmployeeLogic EmployeeLogic = new EmployeeLogic();
-        [Route("all")]
+        [Route("listemployee")]
         [HttpGet]
-        public async Task<List<EmployeeViewModel>> GetAllEmployees()
+        public async Task<IEnumerable<EmployeeViewModel>> GetAllEmployees()
         {
             List<EmployeeViewModel> employeesList = new List<EmployeeViewModel>();
-            var employees = await EmployeeLogic.GetAllEmployees();
-            if (employees.Count >= 0)
-            {
+            var employees = await EmployeeLogic.GetAllEmployeesAsync();
                 foreach (var employee in employees)
                 {
                     EmployeeViewModel employeeView = new EmployeeViewModel
@@ -30,12 +29,18 @@ namespace vhec.SkillInventory.Api.Controllers
                         FullName = employee.FullName,
                         Gender = employee.Gender,
                         JobPosition = employee.JobPosition,
-                        DayCreated = employee.DayCreated
+                        DayCreated = employee.DayCreated,
                     };
                     employeesList.Add(employeeView);
                 }
-            }
             return employeesList;
+        }
+        [Route("createemployee")]
+        [HttpPost]
+        public async Task<Boolean> CreateEmployee(DAL.Entities.Employee employee)
+        {
+            bool result = await EmployeeLogic.CreateEmployeeAsync(employee);
+            return result;
         }
     }
 }

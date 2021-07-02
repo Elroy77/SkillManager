@@ -12,10 +12,21 @@ namespace vhec.SkillInventory.Logic
     public class EmployeeLogic
     {
         private IEmployeeRepository _employee = new EmployeeRepository();
-        public async Task<List<Employee>> GetAllEmployees()
+        public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
         {
-            List<Employee> employees = await _employee.GetAllEmployees();
-            return employees;
+            return await _employee.GetAllEmployees();
         }
+
+        public async Task<Boolean> CreateEmployeeAsync(DAL.Entities.Employee employee)
+        {
+            var result = await _employee.CreateEmployee(employee);
+                return true;
+        }
+
+        //public async Task<IEnumerable<Employee>> GetEmployeeAsync(Guid id)
+        //{
+        //    var result = 
+        //    return await _employee.GetEmployee(id);
+        //}
     }
 }
