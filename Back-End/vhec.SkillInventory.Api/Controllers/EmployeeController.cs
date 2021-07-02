@@ -53,5 +53,16 @@ namespace vhec.SkillInventory.Api.Controllers
             bool result = await EmployeeLogic.CreateEmployeeAsync(employee);
             return result;
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<Boolean> DeleteEmployee([FromRoute] Guid id)
+        {
+            var getId = await EmployeeLogic.GetByIdAsync(id);
+            if (getId == null) return false;
+            bool result = await EmployeeLogic.DeleteEmployeeAsync(getId);
+            return result;
+        }
+
     }
 }

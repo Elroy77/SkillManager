@@ -12,5 +12,8 @@ namespace vhec.SkillInventory.DAL.Repositories.Interfaces
         Task<IEnumerable<Employee>> GetAllEmployees();
         Task<Employee> GetById(Guid id);
         Task<Employee> CreateEmployee(Entities.Employee employee);
+        Task<Employee> DeleteEmployee(Entities.Employee employee);
+
+        //Task<Employee> UpdateEmployee(Entities.Employee employee);
     }
 }
