@@ -9,6 +9,7 @@ namespace vhec.SkillInventory.Api.Models.EmployeeRequest
 {
     public class CreateRequest
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
