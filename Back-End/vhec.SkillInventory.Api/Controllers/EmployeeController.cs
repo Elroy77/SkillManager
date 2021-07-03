@@ -40,47 +40,69 @@ namespace vhec.SkillInventory.Api.Controllers
 
         [HttpGet]
         [Route("list/{id}")]
-        public async Task<ActionResult> GetById([FromRoute] Guid id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var employee = await EmployeeLogic.GetByIdAsync(id);
             if (employee == null) return NotFound($"{id} is not found");
-            return Ok(employee);
+            return Ok(new EmployeeViewModel {
+                EmployeeId = employee.Id,
+                FullName = employee.FullName,
+                Gender = employee.Gender,
+                JobPosition = employee.JobPosition,
+                DayCreated = employee.DayCreated
+            });
         }
 
         [Route("create")]
         [HttpPost]
-        public async Task<Boolean> CreateEmployee(CreateRequest request)
+        public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {
-            bool result = await EmployeeLogic.CreateEmployeeAsync(new DAL.Entities.Employee() 
+            var result = await EmployeeLogic.CreateEmployeeAsync(new DAL.Entities.Employee() 
             {
+                Id = request.Id,
                 FullName = request.FullName,
                 Gender = request.Gender,
-                JobPosition = request.JobPosition
+                JobPosition = request.JobPosition,
+                DayCreated = request.DayCreated
             });
-            return result;
+            return Ok(result);
         }
 
         [Route("update/{id}")]
         [HttpPut]
-        public async Task<Boolean> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
+        public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
         {
             var employeefromDb = await EmployeeLogic.GetByIdAsync(id);
-            if (employeefromDb == null) return false;
+            if (employeefromDb == null) return NotFound($"{id} is not found");
             employeefromDb.FullName = request.FullName;
             employeefromDb.Gender = request.Gender;
             employeefromDb.JobPosition = request.JobPosition;
-            bool result = await EmployeeLogic.UpdateEmployeeAsync(employeefromDb);
-            return result;
+            employeefromDb.DayCreated = request.DayCreated;
+            var result = await EmployeeLogic.UpdateEmployeeAsync(employeefromDb);
+            return Ok(new EmployeeViewModel {
+                EmployeeId = result.Id,
+                FullName = result.FullName,
+                Gender = result.Gender,
+                JobPosition = result.JobPosition,
+                DayCreated = result.DayCreated
+            });
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<Boolean> DeleteEmployee([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
             var getId = await EmployeeLogic.GetByIdAsync(id);
-            if (getId == null) return false;
-            bool result = await EmployeeLogic.DeleteEmployeeAsync(getId);
-            return result;
+            if (getId == null) return NotFound($"{id} is not found");
+            var result = await EmployeeLogic.DeleteEmployeeAsync(getId);
+            return Ok(new EmployeeViewModel
+            {
+                EmployeeId = result.Id,
+                FullName = result.FullName,
+                Gender = result.Gender,
+                JobPosition = result.JobPosition,
+                DayCreated = result.DayCreated
+            });
         }
 
     }

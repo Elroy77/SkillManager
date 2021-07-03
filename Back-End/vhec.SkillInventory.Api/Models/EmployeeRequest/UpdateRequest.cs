@@ -14,5 +14,6 @@ namespace vhec.SkillInventory.Api.Models.EmployeeRequest
         public string FullName { get; set; }
         public Gender Gender { get; set; }
         public JobPosition JobPosition { get; set; }
+        public DateTime DayCreated { get; set; }
     }
 }

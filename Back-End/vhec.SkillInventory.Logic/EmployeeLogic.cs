@@ -23,20 +23,20 @@ namespace vhec.SkillInventory.Logic
             return result;
         }
 
-        public async Task<Boolean> CreateEmployeeAsync(DAL.Entities.Employee employee)
+        public async Task<Employee> CreateEmployeeAsync(DAL.Entities.Employee employee)
         {
             var result = await _employee.CreateEmployee(employee);
-                return true;
+                return result;
         }
-        public async Task<Boolean> UpdateEmployeeAsync(DAL.Entities.Employee employee)
+        public async Task<Employee> UpdateEmployeeAsync(DAL.Entities.Employee employee)
         {
             var result = await _employee.UpdateEmployee(employee);
-            return true;
+            return result;
         }
-        public async Task<Boolean> DeleteEmployeeAsync(DAL.Entities.Employee employee)
+        public async Task<Employee> DeleteEmployeeAsync(DAL.Entities.Employee employee)
         {
             var result = await _employee.DeleteEmployee(employee);
-            return true;
+            return result;
         }
     }
 }
