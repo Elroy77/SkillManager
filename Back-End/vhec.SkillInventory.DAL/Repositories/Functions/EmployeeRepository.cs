@@ -50,7 +50,7 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
         {
             using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
             {
-                context.employees.Remove(employee);
+                context.employees.Update(employee);
                 await context.SaveChangesAsync();
             }
             return employee;

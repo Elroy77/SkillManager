@@ -49,11 +49,6 @@ namespace vhec.SkillInventory.Api.Controllers
 
         [Route("create")]
         [HttpPost]
-        //public async Task<Boolean> CreateEmployee(Employee employee)
-        //{
-        //    bool result = await EmployeeLogic.CreateEmployeeAsync(employee);
-        //    return result;
-        //}
         public async Task<Boolean> CreateEmployee(CreateRequest request)
         {
             bool result = await EmployeeLogic.CreateEmployeeAsync(new DAL.Entities.Employee() 
