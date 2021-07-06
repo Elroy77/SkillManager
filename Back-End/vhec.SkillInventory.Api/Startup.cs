@@ -34,6 +34,10 @@ namespace vhec.SkillInventory.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "vhec.SkillInventory.Api", Version = "v1" });
             });
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         }
 
@@ -50,6 +54,8 @@ namespace vhec.SkillInventory.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseAuthorization();
 

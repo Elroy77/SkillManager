@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace vhec.SkillInventory.Api.Controllers
         private EmployeeLogic EmployeeLogic = new EmployeeLogic();
         [Route("list")]
         [HttpGet]
-        public async Task<IEnumerable<EmployeeViewModel>> GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees()
         {
             List<EmployeeViewModel> employeesList = new List<EmployeeViewModel>();
             var employees = await EmployeeLogic.GetAllEmployeesAsync();
@@ -35,7 +36,8 @@ namespace vhec.SkillInventory.Api.Controllers
                 };
                 employeesList.Add(employeeView);
             }
-            return employeesList;
+            //return employeesList;
+            return Ok(new { data = employeesList });
         }
 
         [HttpGet]

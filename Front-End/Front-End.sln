@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vhec.SkillInventory.test", "vhec.SkillInventory.test\vhec.SkillInventory.test.csproj", "{215CDCA5-8FEE-473C-81CF-ACBD0105B419}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "vhec.SkillInventory.Web", "vhec.SkillInventory.Web\vhec.SkillInventory.Web.njsproj", "{2D3A4FEE-E222-40BB-97E0-B742087D7140}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{215CDCA5-8FEE-473C-81CF-ACBD0105B419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{215CDCA5-8FEE-473C-81CF-ACBD0105B419}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{215CDCA5-8FEE-473C-81CF-ACBD0105B419}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{215CDCA5-8FEE-473C-81CF-ACBD0105B419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3A4FEE-E222-40BB-97E0-B742087D7140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3A4FEE-E222-40BB-97E0-B742087D7140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3A4FEE-E222-40BB-97E0-B742087D7140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3A4FEE-E222-40BB-97E0-B742087D7140}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
