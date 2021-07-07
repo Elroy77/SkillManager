@@ -9,7 +9,7 @@
                 </div>
                 <div class="table-data__tool-right">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                        <i class="zmdi zmdi-plus"></i>+ add item</button>
+                        <i class="zmdi zmdi-plus"></i>＋add new</button>
                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                     </div>
                 </div>
@@ -32,21 +32,28 @@
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
-                            <td class="desc">{{item.gender}}</td>
+                            <td>
+                                <span class="status--process" v-if="item.gender == 0">Male</span>
+                                <span class="status--denied" v-else>Female</span>
+                            </td>
                              <td>
-                                <span class="status--process">{{item.jobPosition}}</span>
+                                <span class="role manager" v-if="item.jobPosition == 0">Manager</span>
+                                <span class="role developer" v-else-if="item.jobPosition == 1">Developer</span>
+                                <span class="role tester" v-else-if="item.jobPosition == 2">Tester</span>
+                                <span class="role designer" v-else-if="item.jobPosition == 3">Designer</span>
+                                <span class="role analytical" v-else-if="item.jobPosition == 4">Analytical</span>
                             </td>
                             <td>{{item.dayCreated}}</td>
                             <td>
                                 <div class="table-data-feature">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="detail">
-                                        <i class="fa fa-file">❏</i>
+                                        <i class="material-icons">İ</i>
                                     </button>
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit">✎</i>
                                     </button>
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="zmdi zmdi-delete">⊠</i>
+                                        <i class="zmdi zmdi-delete">☒</i>
                                     </button>
                                 </div>
                             </td>
@@ -4484,16 +4491,24 @@ section {
     text-transform: capitalize;
 }
 
-.role.admin {
+.role.manager {
     background: #fa4251;
 }
 
-.role.user {
-    background: #00b5e9;
+.role.developer {
+    background: #30704b;
 }
 
-.role.member {
-    background: #57b846;
+.role.tester {
+    background: #4197c9;
+}
+
+.role.designer {
+    background: #310b22;
+}
+
+.role.analytical {
+    background: #396d6d;
 }
 
 .table-top-campaign.table td {
