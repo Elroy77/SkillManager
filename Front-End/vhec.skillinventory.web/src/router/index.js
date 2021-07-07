@@ -11,19 +11,19 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import(/* webpackChunkName: "Overview" */ '../views/Home.vue')
+        component: () => import('../views/Home.vue')
       },
       {
         path: 'employee',
-        component: () => import(/* webpackChunkName: "Messages" */ '../views/Employee.vue')
+        component: () => import('../views/Employee.vue')
       },
       {
         path: 'skill',
-        component: () => import(/* webpackChunkName: "Profile" */ '../views/Skill.vue')
+        component: () => import('../views/Skill.vue')
       },
       {
         path: 'information',
-        component: () => import(/* webpackChunkName: "Settings" */ '../views/Information.vue')
+        component: () => import('../views/Information.vue')
       }
     ]
   }
