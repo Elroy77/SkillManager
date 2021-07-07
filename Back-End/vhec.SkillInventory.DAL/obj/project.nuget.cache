@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yjGQyOf76CQvlO8hwKC59JBgiINutUvvV04N5p/I0vLUkZyeeoF16hKS7WtuXsurR0cE2h/JuDLM/sl2NmItYw==",
+  "dgSpecHash": "ZZ8G+UtQ27FfF+YZ7dmHXt7+OINIi5TzeREGNQEYtv7EWfXvpT5CMWdkhKvvpP/HT5LYtNVYcH4A0+nXpd+uzg==",
   "success": true,
-  "projectFilePath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
+  "projectFilePath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VH-PC014\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VH-PC014\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -1,3 +1,0 @@
-# vhec.SkillInventory.Web
-
-

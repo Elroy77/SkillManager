@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {}
+    "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {}
   },
   "projects": {
-    "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
+    "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
+        "projectUniqueName": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
         "projectName": "vhec.SkillInventory.DAL",
-        "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
+        "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
         "packagesPath": "C:\\Users\\VH-PC014\\.nuget\\packages\\",
-        "outputPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\obj\\",
+        "outputPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VH-PC014\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -84,14 +84,14 @@
         }
       }
     },
-    "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {
+    "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+        "projectUniqueName": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
         "projectName": "vhec.SkillInventory.Logic",
-        "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+        "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
         "packagesPath": "C:\\Users\\VH-PC014\\.nuget\\packages\\",
-        "outputPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\obj\\",
+        "outputPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VH-PC014\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -108,8 +108,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
-                "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj"
+              "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
+                "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj"
               }
             }
           }

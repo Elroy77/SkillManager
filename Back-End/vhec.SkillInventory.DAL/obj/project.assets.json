@@ -1061,11 +1061,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
+      "projectUniqueName": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
       "projectName": "vhec.SkillInventory.DAL",
-      "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
+      "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj",
       "packagesPath": "C:\\Users\\VH-PC014\\.nuget\\packages\\",
-      "outputPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\obj\\",
+      "outputPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\VH-PC014\\AppData\\Roaming\\NuGet\\NuGet.Config",

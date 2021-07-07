@@ -1282,11 +1282,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\vhec.SkillInventory.Api.csproj",
+      "projectUniqueName": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\vhec.SkillInventory.Api.csproj",
       "projectName": "vhec.SkillInventory.Api",
-      "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\vhec.SkillInventory.Api.csproj",
+      "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\vhec.SkillInventory.Api.csproj",
       "packagesPath": "C:\\Users\\VH-PC014\\.nuget\\packages\\",
-      "outputPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\obj\\",
+      "outputPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\VH-PC014\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1303,8 +1303,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {
-              "projectPath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj"
+            "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj": {
+              "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj"
             }
           }
         }

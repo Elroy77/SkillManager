@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rjIZimlnWyfc6KIA/Y5FImhe0+8R626eOtCQJCwhfOLK8fSSHcGkCTCL6HhADX7XA1IG6OxsCYDoxIANHeJV1A==",
+  "dgSpecHash": "W5s7ygaCBs4Z9cpYkCujFGEA9TkcM0AC4cKiwQT+1iy7G3DlXS1YrOQ/3KK7cMM7gS4hjBp5D4EPSzVNsAywUw==",
   "success": true,
-  "projectFilePath": "F:\\Manhnv\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+  "projectFilePath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VH-PC014\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",
     "C:\\Users\\VH-PC014\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.7\\microsoft.entityframeworkcore.abstractions.5.0.7.nupkg.sha512",

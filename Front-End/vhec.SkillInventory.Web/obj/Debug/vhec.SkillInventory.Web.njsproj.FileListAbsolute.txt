@@ -1,3 +1,0 @@
-F:\Manhnv\SkillManager\Front-End\vhec.SkillInventory.Web\obj\Debug\vhec.SkillInventory.Web.njsproj.AssemblyReference.cache
-F:\Manhnv\SkillManager\Front-End\vhec.SkillInventory.Web\obj\Debug\vhec.SkillInventory.Web.njsproj.CoreCompileInputs.cache
-F:\Manhnv\SkillManager\Front-End\vhec.SkillInventory.Web\bin\Microsoft.NodejsTools.WebRole.dll
