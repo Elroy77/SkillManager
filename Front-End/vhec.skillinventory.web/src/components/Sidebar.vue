@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style scoped>
+
+.sidebar {
+    height: 100%;
+}
 .title {
     color: white;
     font-size: 24px;
