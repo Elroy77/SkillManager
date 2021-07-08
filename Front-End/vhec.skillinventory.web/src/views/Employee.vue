@@ -6,6 +6,15 @@
             <h2 class="title-5 m-b-35">Employee manager</h2>
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <select name="select" id="select" class="form-control">
+                            <option value="0">select skill</option>
+                            <option value="1">Option #1</option>
+                        </select>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </div>
                 <div class="table-data__tool-right">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
@@ -93,6 +102,10 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.form-inline {
+    margin-left: 60px;
 }
 
 ul {
