@@ -11,35 +11,43 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <form>
+                    <form @submit.prevent="postEmployee">
+                        <!-- <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Id</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="employee.employeeId">
+                        </div> -->
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full name</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
-                            <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
+                            <select class="form-control" v-model="employeePost.gender">
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                                <option value="2">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Position</label>
-                            <select class="form-control">
-                                <option>Manager</option>
-                                <option>Developer</option>
-                                <option>Tester</option>
-                                <option>Designer</option>
+                            <select class="form-control" v-model="employeePost.jobPosition">
+                                <option value="0">Manager</option>
+                                <option value="1">Developer</option>
+                                <option value="2">Tester</option>
+                                <option value="3">Designer</option>
                             </select>
                         </div>
+                        <!-- <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Day created</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="employee.dayCreated">
+                        </div> -->
                         <div>
                             <label for="tags-basic">Add Skill</label>
                             <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div> 
@@ -54,7 +62,7 @@
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="ID..." aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search">
                         <select name="select" id="select" class="form-control">
                             <option value="0">Select skill</option>
                             <option value="1">Option #1</option>
@@ -74,7 +82,6 @@
                 <table class="table table-data2">
                     <thead>
                         <tr>
-                           <th scope="col">ID</th>
                             <th scope="col">Full name</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Position</th>
@@ -84,7 +91,6 @@
                     </thead>
                     <tbody>
                         <tr class="tr-shadow" v-for="item in list" :key="item.employeeId">      
-                            <td>{{item.employeeId}}</td>
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
@@ -108,7 +114,7 @@
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit">✎</i>
                                     </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="deleteEmployee(item.employeeId)">
                                         <i class="zmdi zmdi-delete">☒</i>
                                     </button>
                                 </div>
@@ -132,15 +138,34 @@
         data() {
             return { 
                 list: undefined,
-                skill: ['C#', 'SqlServer'] 
+                skill: [] ,
+                employeePost: {
+                    employeeId:'',
+                    fullName:'',
+                    gender:'',
+                    jobPosition:''
+                   
                 }
+            }
         },
-        mounted() {
-            Vue.axios.get('http://localhost:5000/api/employee/list')
-                .then((resp) => {
-                    this.list = resp.data.data
-                    console.warn(resp.data.data)
-                })
+        methods:{
+            getEmployee()
+            {
+                Vue.axios.get('http://localhost:5000/api/employee/')
+                    .then((resp) => {
+                        this.list = resp.data.data
+                        console.warn(resp.data.data)
+                    })  
+            },
+            postEmployee() 
+            {
+                console.warn(this.employeePost)
+                axios.post('http://localhost:5000/api/employee/', this.employeePost)
+                .then(response => console.log(response))
+            },
+        },
+        mounted() {  
+            this.getEmployee()     
         }
     }
 </script>

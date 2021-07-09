@@ -18,7 +18,7 @@ namespace vhec.SkillInventory.Api.Controllers
     public class EmployeeController : ControllerBase
     {
         private EmployeeLogic EmployeeLogic = new EmployeeLogic();
-        [Route("list")]
+        [Route("")]
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -36,7 +36,6 @@ namespace vhec.SkillInventory.Api.Controllers
                 };
                 employeesList.Add(employeeView);
             }
-            //return employeesList;
             return Ok(new { data = employeesList });
         }
 
@@ -55,7 +54,7 @@ namespace vhec.SkillInventory.Api.Controllers
             });
         }
 
-        [Route("create")]
+        [Route("")]
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {
@@ -65,7 +64,7 @@ namespace vhec.SkillInventory.Api.Controllers
                 FullName = request.FullName,
                 Gender = request.Gender,
                 JobPosition = request.JobPosition,
-                DayCreated = request.DayCreated
+                //DayCreated = request.DayCreated
             });
             return Ok(result);
         }
