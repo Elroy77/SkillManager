@@ -8,8 +8,8 @@ namespace vhec.SkillInventory.DAL.Enums
 {
     public enum Gender
     {
-        Male,
-        Female,
-        other
+        Male=1,
+        Female = 2,
+        other = 3
     }
 }

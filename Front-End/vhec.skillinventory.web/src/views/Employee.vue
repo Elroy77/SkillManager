@@ -1,6 +1,6 @@
 <template>
 <div class="row">   
-        <!-- Modal -->
+        <!-- Modal add -->
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -11,42 +11,34 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <form @submit.prevent="postEmployee">
-                        <!-- <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Id</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee.employeeId">
-                        </div> -->
+                    <form @submit.prevent="postEmployee" method="post">
+
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full name</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
                         </div>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
-                            <select class="form-control" v-model="employeePost.gender">
-                                <option value="0">Male</option>
-                                <option value="1">Female</option>
-                                <option value="2">Other</option>
+                            <select v-model="employeePost.gender" class="form-control">
+                            <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
+                                {{ option.text }}
+                            </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Position</label>
-                            <select class="form-control" v-model="employeePost.jobPosition">
-                                <option value="0">Manager</option>
-                                <option value="1">Developer</option>
-                                <option value="2">Tester</option>
-                                <option value="3">Designer</option>
+                            <select v-model="employeePost.jobPosition" class="form-control">
+                                <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
+                                    {{ option.text }}
+                                </option>
                             </select>
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Day created</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employee.dayCreated">
-                        </div> -->
+                        </div>
                         <div>
                             <label for="tags-basic">Add Skill</label>
                             <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
@@ -54,7 +46,56 @@
             </div>
         </div>
         </div>
-        <!-- End Modal -->
+        <!-- End Modal add -->
+
+        <!-- Modal update -->
+        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="update" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="update">Update employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <form @submit.prevent="putEmployee">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Full name</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Gender</label>
+                            <select v-model="employeePost.gender" class="form-control">
+                                <option value=""></option>
+                                <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Position</label>
+                            <select v-model="employeePost.jobPosition" class="form-control">
+                                <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="tags-basic">update Skill</label>
+                            <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Update</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+        </div>
+        <!-- End Modal update -->
         <div class="col-md-12">
             <!-- DATA TABLE -->
             <br>
@@ -85,7 +126,7 @@
                             <th scope="col">Full name</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Position</th>
-                            <th scope="col">created</th>
+                            <th scope="col">Updated At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -95,8 +136,9 @@
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
                             <td>
-                                <span class="status--process" v-if="item.gender == 0">Male</span>
-                                <span class="status--denied" v-else>Female</span>
+                                <span class="status--male" v-if="item.gender == 0">Male</span>
+                                <span class="status--female" v-else-if="item.gender == 1">Female</span>
+                                <span class="status--other" v-else-if="item.gender == 2">Other</span>
                             </td>
                              <td>
                                 <span class="role manager" v-if="item.jobPosition == 0">Manager</span>
@@ -111,11 +153,11 @@
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="detail">
                                         <i class="material-icons">İ</i>
                                     </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit">✎</i>
+                                    <button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#update" >
+                                        <i class="zmdi zmdi-edit" v-on:click="putEmployee(item.employeeId)">✎</i>
                                     </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="deleteEmployee(item.employeeId)">
-                                        <i class="zmdi zmdi-delete">☒</i>
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="zmdi zmdi-delete" v-on:click="deleteEmployee(item.employeeId)">☒</i>
                                     </button>
                                 </div>
                             </td>
@@ -140,12 +182,20 @@
                 list: undefined,
                 skill: [] ,
                 employeePost: {
-                    employeeId:'',
-                    fullName:'',
-                    //gender:'',
-                   // jobPosition:''
-                   
-                }
+                    fullName:''                  
+                },
+                optionGenders: [
+                    { text: 'Male', value: 0 },
+                    { text: 'Female', value: 1 },
+                    { text: 'Other', value: 2 }
+                ],
+                optionPositions: [
+                    { text: 'Manager', value: 0 },
+                    { text: 'Developer', value: 1 },
+                    { text: 'Tester', value: 2 },
+                    { text: 'Designer', value: 3 },
+                    { text: 'Analytical', value: 4 }
+                ]
             }
         },
         methods:{
@@ -161,7 +211,26 @@
             {
                 console.warn(this.employeePost)
                 axios.post('http://localhost:5000/api/employee/', this.employeePost)
+                .then(() =>{
+                    this.getEmployee()
+                })
                 .then(response => console.log(response))
+                this.$toasted.show('Add new employee success!').goAway(1500)
+
+            },
+            putEmployee(id)
+            {
+                this.axios.get('http://localhost:5000/api/employee/'+id)
+                    .then((resp) => {
+                        console.warn(resp)
+                    })  
+            },
+            deleteEmployee(id)
+            {
+                this.axios.delete('http://localhost:5000/api/employee/'+id).then(() =>{
+                    this.getEmployee()})
+                this.$toasted.show('Delete employee success!').goAway(1500)
+
             },
         },
         mounted() {  
@@ -390,12 +459,16 @@
     padding: 0 14px;
 }
 
-.status--process {
+.status--male {
     color: #00ad5f;
 }
 
-.status--denied {
+.status--female {
     color: #fa4251;
+}
+
+.status--other {
+    color: #8b00fd;
 }
 
 .role {
@@ -423,7 +496,7 @@
 }
 
 .role.designer {
-    background: #310b22;
+    background: #9b8f24;
 }
 
 .role.analytical {

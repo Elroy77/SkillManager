@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,12 +18,11 @@ namespace vhec.SkillInventory.DAL.Entities
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
-        [Required]
         public Gender Gender { get; set; }
 
         public JobPosition JobPosition { get; set; }
 
-        public DateTime DayCreated { get; set; }
+        public DateTime DayCreated { get; set; } = DateTime.Now;
 
         public virtual ICollection<DetailSkill> detailSkills { get; set; }
     }

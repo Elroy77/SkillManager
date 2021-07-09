@@ -40,7 +40,7 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpGet]
-        [Route("list/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var employee = await EmployeeLogic.GetByIdAsync(id);
@@ -61,13 +61,14 @@ namespace vhec.SkillInventory.Api.Controllers
             var result = await EmployeeLogic.CreateEmployeeAsync(new DAL.Entities.Employee() 
             {
                 Id = request.Id,
-                FullName = request.FullName
-                
+                FullName = request.FullName,
+                Gender = request.Gender,
+                JobPosition = request.JobPosition
             });
             return Ok(result);
         }
 
-        [Route("update/{id}")]
+        [Route("{id}")]
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
         {
@@ -76,7 +77,6 @@ namespace vhec.SkillInventory.Api.Controllers
             employeefromDb.FullName = request.FullName;
             employeefromDb.Gender = request.Gender;
             employeefromDb.JobPosition = request.JobPosition;
-            employeefromDb.DayCreated = request.DayCreated;
             var result = await EmployeeLogic.UpdateEmployeeAsync(employeefromDb);
             return Ok(new EmployeeViewModel {
                 EmployeeId = result.Id,
@@ -88,7 +88,7 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
             var getId = await EmployeeLogic.GetByIdAsync(id);

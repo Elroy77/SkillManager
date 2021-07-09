@@ -24,7 +24,7 @@
             <div class="col-2">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="">Error</a>
+                  <a class="nav-link" href="">Admin</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">|</a>

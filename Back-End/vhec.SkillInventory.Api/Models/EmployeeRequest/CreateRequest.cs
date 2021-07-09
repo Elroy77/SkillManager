@@ -13,8 +13,9 @@ namespace vhec.SkillInventory.Api.Models.EmployeeRequest
         [MaxLength(250)]
         [Required]
         public string FullName { get; set; }
-        //public Gender? Gender { get; set; }
-        //public JobPosition? JobPosition { get; set; }
-        //public DateTime? DayCreated { get; set; }
+        [Required]
+        public Gender Gender { get; set; }
+        [Required]
+        public JobPosition JobPosition { get; set; }
     }
 }
