@@ -20,7 +20,7 @@
                             <label for="recipient-name" class="col-form-label">Full name</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
                             <select class="form-control" v-model="employeePost.gender">
                                 <option value="0">Male</option>
@@ -36,7 +36,7 @@
                                 <option value="2">Tester</option>
                                 <option value="3">Designer</option>
                             </select>
-                        </div>
+                        </div> -->
                         <!-- <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Day created</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="employee.dayCreated">
@@ -142,8 +142,8 @@
                 employeePost: {
                     employeeId:'',
                     fullName:'',
-                    gender:'',
-                    jobPosition:''
+                    //gender:'',
+                   // jobPosition:''
                    
                 }
             }

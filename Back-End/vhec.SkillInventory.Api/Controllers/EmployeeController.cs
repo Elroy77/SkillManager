@@ -61,10 +61,8 @@ namespace vhec.SkillInventory.Api.Controllers
             var result = await EmployeeLogic.CreateEmployeeAsync(new DAL.Entities.Employee() 
             {
                 Id = request.Id,
-                FullName = request.FullName,
-                Gender = request.Gender,
-                JobPosition = request.JobPosition,
-                //DayCreated = request.DayCreated
+                FullName = request.FullName
+                
             });
             return Ok(result);
         }
