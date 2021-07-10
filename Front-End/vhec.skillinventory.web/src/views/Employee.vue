@@ -63,11 +63,11 @@
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full name</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
-                            <select v-model="employeePost.gender" class="form-control">
+                            <select v-model="employeePut.gender" class="form-control">
                                 <option value=""></option>
                                 <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
                                     {{ option.text }}
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Position</label>
-                            <select v-model="employeePost.jobPosition" class="form-control">
+                            <select v-model="employeePut.jobPosition" class="form-control">
                                 <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
                                     {{ option.text }}
                                 </option>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Update</button>
+                            <button type="submit" class="btn btn-primary" v-on:click="putEmployee()">Update</button>
                         </div>
                     </form>
                 </div> 
@@ -154,7 +154,7 @@
                                         <i class="material-icons">İ</i>
                                     </button>
                                     <button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#update" >
-                                        <i class="zmdi zmdi-edit" v-on:click="putEmployee(item.employeeId)">✎</i>
+                                        <i class="zmdi zmdi-edit" v-on:click="getEmployeeId(item.employeeId)">✎</i>
                                     </button>
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete" v-on:click="deleteEmployee(item.employeeId)">☒</i>
@@ -195,7 +195,10 @@
                     { text: 'Tester', value: 2 },
                     { text: 'Designer', value: 3 },
                     { text: 'Analytical', value: 4 }
-                ]
+                ],
+                employeePut: {
+                    fullName:''
+                }
             }
         },
         methods:{
@@ -206,6 +209,13 @@
                         this.list = resp.data.data
                         console.warn(resp.data.data)
                     })  
+            },
+
+            getEmployeeId(id) {
+                this.axios.get('http://localhost:5000/api/employee/'+id).then(() => {
+                        console.warn()
+                    })  
+                    return id
             },
             postEmployee() 
             {
@@ -218,9 +228,9 @@
                 this.$toasted.show('Add new employee success!').goAway(1500)
 
             },
-            putEmployee(id)
+            putEmployee()
             {
-                this.axios.get('http://localhost:5000/api/employee/'+id)
+                this.axios.put('http://localhost:5000/api/employee/'+"e0d7d668-9385-447b-ba6d-a1c52715245d", this.employeePut)
                     .then((resp) => {
                         console.warn(resp)
                     })  
