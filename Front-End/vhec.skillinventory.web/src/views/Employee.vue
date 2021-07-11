@@ -11,7 +11,7 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <form @submit.prevent="postEmployee" method="post">
+                    <form @submit.prevent="postEmployee">
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full name</label>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="btnAdd" name="btnAdd" data-dismiss="modal">Create</button>
+                            <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="postEmployee()" data-dismiss="modal" >Create</button>
                         </div>
                     </form>
                 </div> 
