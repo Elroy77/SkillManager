@@ -901,19 +901,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\VH-PC014\\.nuget\\packages\\": {}
+    "C:\\Users\\manh\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+      "projectUniqueName": "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
       "projectName": "vhec.SkillInventory.Logic",
-      "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
-      "packagesPath": "C:\\Users\\VH-PC014\\.nuget\\packages\\",
-      "outputPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\obj\\",
+      "projectPath": "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+      "packagesPath": "C:\\Users\\manh\\.nuget\\packages\\",
+      "outputPath": "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\VH-PC014\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -927,8 +932,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
-              "projectPath": "F:\\Manhnv\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj"
+            "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj": {
+              "projectPath": "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.DAL\\vhec.SkillInventory.DAL.csproj"
             }
           }
         }

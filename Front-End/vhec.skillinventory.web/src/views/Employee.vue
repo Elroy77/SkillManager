@@ -39,7 +39,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="btnAdd" name="btnAdd" data-dismiss="modal">Create</button>
                         </div>
                     </form>
                 </div> 
@@ -53,22 +53,23 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="update">Update employee</h5>
+                <h5 class="modal-title" id="update">Update employee</h5>                
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <br>
+            <h5 id="EmployeeIdUpdate">{{part.employeeId}}</h5>
                 <div class="modal-body">
-                    <form @submit.prevent="putEmployee">
-
+                    <form @submit.prevent="putEmployee" method="post">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Full name</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName">
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName"
+                            >
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Gender</label>
                             <select v-model="employeePut.gender" class="form-control">
-                                <option value=""></option>
                                 <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
                                     {{ option.text }}
                                 </option>
@@ -83,12 +84,12 @@
                             </select>
                         </div>
                         <div>
-                            <label for="tags-basic">update Skill</label>
+                            <label for="tags-basic">Update Skill</label>
                             <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
                         </div>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" v-on:click="putEmployee()">Update</button>
+                            <button type="submit" class="btn btn-primary" v-on:click="putEmployee()" data-dismiss="modal">Update</button>
                         </div>
                     </form>
                 </div> 
@@ -96,6 +97,41 @@
         </div>
         </div>
         <!-- End Modal update -->
+
+        <!-- Modal deatil -->
+        <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detail">detail employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item block-email" style="color:red">Id: {{part.employeeId}}</li>
+                        <li class="list-group-item" style="color:#0000FF" >full Name: {{part.fullName}}</li>
+                        <li class="list-group-item status--male" v-if="part.gender == 0">Gender: Male</li>
+                        <li class="list-group-item status--female" v-else-if="part.gender == 1" >Gender: Female</li>
+                        <li class="list-group-item status--other" v-else-if="part.gender == 2">Gender: Ohter</li>
+                        <li class="list-group-item " v-if="part.jobPosition == 0">Job position: Manager</li>
+                        <li class="list-group-item " v-else-if="part.jobPosition == 1">Job position: Developer</li>
+                        <li class="list-group-item " v-else-if="part.jobPosition == 2">Job position: Tester</li>
+                        <li class="list-group-item " v-else-if="part.jobPosition == 3">Job position: Designer</li>
+                        <li class="list-group-item " v-else-if="part.jobPosition == 4">Job position: Analytical</li>
+                        <li class="list-group-item">Skill:</li>
+                        <li class="list-group-item">Day Created: {{part.dayCreated}}</li>
+                        <li class="list-group-item">Update at: {{part.dayCreated}}</li>
+                    </ul> 
+                    <div class="modal-footer">
+                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>                       
+                </div> 
+            </div>
+        </div>
+        </div>
+        <!-- End Modal detail -->
         <div class="col-md-12">
             <!-- DATA TABLE -->
             <br>
@@ -127,7 +163,7 @@
                             <th scope="col">Gender</th>
                             <th scope="col">Position</th>
                             <th scope="col">Updated At</th>
-                            <th>Action</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,11 +183,13 @@
                                 <span class="role designer" v-else-if="item.jobPosition == 3">Designer</span>
                                 <span class="role analytical" v-else-if="item.jobPosition == 4">Analytical</span>
                             </td>
-                            <td>{{item.dayCreated}}</td>
+                            <td>
+                                {{item.dayCreated}}
+                            </td>
                             <td>
                                 <div class="table-data-feature">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="detail">
-                                        <i class="material-icons">İ</i>
+                                    <button class="item" data-placement="top" title="detail" data-toggle="modal" data-target="#detail">
+                                        <i class="material-icons" v-on:click="getEmployeeId(item.employeeId)">İ</i>
                                     </button>
                                     <button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#update" >
                                         <i class="zmdi zmdi-edit" v-on:click="getEmployeeId(item.employeeId)">✎</i>
@@ -167,27 +205,32 @@
             </div>
             <!-- END DATA TABLE -->
         </div>
-    </div>                        
+    </div>                       
 </template>
 
 <script>
     import Vue from 'vue';
     import axios from 'axios'
     import VueAxios from 'vue-axios'
+
     Vue.use(VueAxios, axios)
     export default {
         name: "Employee",
         data() {
             return { 
                 list: undefined,
+                part: {},
                 skill: [] ,
                 employeePost: {
                     fullName:''                  
                 },
+                employeePut: {
+                    fullName:'',
+                },
                 optionGenders: [
                     { text: 'Male', value: 0 },
                     { text: 'Female', value: 1 },
-                    { text: 'Other', value: 2 }
+                    { text: 'Other', value: 2 },
                 ],
                 optionPositions: [
                     { text: 'Manager', value: 0 },
@@ -195,10 +238,7 @@
                     { text: 'Tester', value: 2 },
                     { text: 'Designer', value: 3 },
                     { text: 'Analytical', value: 4 }
-                ],
-                employeePut: {
-                    fullName:''
-                }
+                ]
             }
         },
         methods:{
@@ -212,10 +252,11 @@
             },
 
             getEmployeeId(id) {
-                this.axios.get('http://localhost:5000/api/employee/'+id).then(() => {
-                        console.warn()
-                    })  
-                    return id
+                this.axios.get('http://localhost:5000/api/employee/'+id)
+                    .then((result) => {
+                    this.part = result.data;
+                    console.log(this.part);
+                })
             },
             postEmployee() 
             {
@@ -225,15 +266,19 @@
                     this.getEmployee()
                 })
                 .then(response => console.log(response))
-                this.$toasted.show('Add new employee success!').goAway(1500)
-
+                this.$toasted.show('Add new employee success!').goAway(1500)                
             },
             putEmployee()
             {
-                this.axios.put('http://localhost:5000/api/employee/'+"e0d7d668-9385-447b-ba6d-a1c52715245d", this.employeePut)
-                    .then((resp) => {
-                        console.warn(resp)
-                    })  
+                let id = document.getElementById('EmployeeIdUpdate').innerHTML
+                let idm = document.getElementById('update')
+                this.axios.put('http://localhost:5000/api/employee/'+id, this.employeePut)
+                .then(() =>{
+                    this.getEmployee()
+                })
+                .then(response => console.log(response))
+                idm.modal("hide");
+                this.$toasted.show('Update employee success!').goAway(1500)                
             },
             deleteEmployee(id)
             {
