@@ -124,3 +124,5 @@ F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.Api\obj\Debug\net5.0
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.Api\obj\Debug\net5.0\ref\vhec.SkillInventory.Api.dll
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.Api\obj\Debug\net5.0\vhec.SkillInventory.Api.pdb
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.Api\obj\Debug\net5.0\vhec.SkillInventory.Api.genruntimeconfig.cache
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Api\bin\Debug\net5.0\AutoMapper.dll
+F:\Manhnv\SkillManager\Back-End\vhec.SkillInventory.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

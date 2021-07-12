@@ -29,20 +29,6 @@ namespace vhec.SkillInventory.DAL.DataContext
                 .WithMany(t => t.detailSkills)
                 .HasForeignKey(pt => pt.SkillID);
         }
-        public class OptionsBuild
-        {
-            public OptionsBuild()
-            {
-                settings = new AppConfiguration();
-                opsBuilder = new DbContextOptionsBuilder<SkillIManagerDbContext>();
-                opsBuilder.UseNpgsql(settings.sqlConnectionString);
-                dbOptions = opsBuilder.Options;
-            }
-            private AppConfiguration settings { get; set; }
-            public DbContextOptionsBuilder<SkillIManagerDbContext> opsBuilder { get; set; }
-            public DbContextOptions<SkillIManagerDbContext> dbOptions { get; set; }
-        }
-        public static OptionsBuild ops = new OptionsBuild();
         public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> skills { get; set; }
         public DbSet<DetailSkill> detailSkills { get; set; }

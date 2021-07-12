@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,57 +13,41 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
 {
     public class EmployeeRepository : IEmployeeRepository
     {
+        private readonly SkillIManagerDbContext _context;
+        private readonly IMapper _mapper;
+        public EmployeeRepository(SkillIManagerDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
         public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
-            List<Employee> employees = new List<Employee>();
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                employees = await context.employees.ToListAsync();
-            }
-            return employees;
+             var employees = await _context.employees.ToListAsync();
+            return _mapper.Map<IEnumerable<Employee>>(employees);
         }
         public async Task<Employee> GetById(Guid id)
         {
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                return await context.employees.FindAsync(id);
-            }
+            var employeeId = await _context.employees.FindAsync(id);
+            return _mapper.Map<Employee>(employeeId);
         }
         public async Task<Employee> CreateEmployee(Employee employee)
         {
-            Employee newemployee = new Employee()
-            {
-                Id = employee.Id,
-                FullName = employee.FullName,
-                Gender = employee.Gender,
-                JobPosition = employee.JobPosition,
-                DayCreated = employee.DayCreated,
-                detailSkills = employee.detailSkills
-            };
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                await context.employees.AddAsync(newemployee);
-                await context.SaveChangesAsync();
-            }
-            return newemployee;
+            _context.employees.Add(employee);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Employee>(employee);
         }
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                context.employees.Update(employee);
-                await context.SaveChangesAsync();
-            }
-            return employee;
+            _context.employees.Update(employee);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Employee>(employee);
         }
         public async Task<Employee> DeleteEmployee(Employee employee)
         {
-            using (var context = new SkillIManagerDbContext(SkillIManagerDbContext.ops.dbOptions))
-            {
-                context.employees.Remove(employee);
-                await context.SaveChangesAsync();
-            }
-            return employee;
+            _context.employees.Remove(employee);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Employee>(employee);
         }
     }
 }
