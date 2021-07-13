@@ -218,6 +218,7 @@
     import Vue from 'vue';
     import axios from 'axios'
     import VueAxios from 'vue-axios'
+    import EmployeeService from '../APIServices/EmployeeService';
 
     Vue.use(VueAxios, axios)
     export default {
@@ -246,13 +247,17 @@
                     { text: 'Tester', value: 2 },
                     { text: 'Designer', value: 3 },
                     { text: 'Analytical', value: 4 }
-                ]
+                ],
+                create() {
+                    this.getEmployee()
+                    this.getEmployeeId()
+                }
             }
         },
         methods:{
             getEmployee()
             {
-                Vue.axios.get('http://localhost:5000/api/employee/')
+                EmployeeService.getAllEmpl()
                     .then((resp) => {
                         this.list = resp.data.data
                         console.warn(resp.data.data)
@@ -260,7 +265,7 @@
             },
 
             getEmployeeId(id) {
-                this.axios.get('http://localhost:5000/api/employee/'+id)
+                EmployeeService.getByIdEmpl(id)
                     .then((result) => {
                     this.part = result.data;
                     console.log(this.part);
@@ -269,7 +274,7 @@
             postEmployee() 
             {
                 console.warn(this.employeePost)
-                axios.post('http://localhost:5000/api/employee/', this.employeePost)
+                EmployeeService.postEmpl(this.employeePost)
                 .then(() =>{
                     this.getEmployee()
                 })
@@ -279,7 +284,7 @@
             putEmployee()
             {
                 let idEmployee = this.$refs.EmployeeIdUpdate.innerHTML
-                this.axios.put('http://localhost:5000/api/employee/'+idEmployee, this.employeePut)
+                EmployeeService.putEmpl(idEmployee, this.employeePut)
                 .then(() =>{
                     this.getEmployee()
                 })
@@ -288,7 +293,7 @@
             },
             deleteEmployee(id)
             {
-                this.axios.delete('http://localhost:5000/api/employee/'+id)
+                EmployeeService.deleteEmpl(id)
                 .then(() =>{
                     this.getEmployee()}
                 )
