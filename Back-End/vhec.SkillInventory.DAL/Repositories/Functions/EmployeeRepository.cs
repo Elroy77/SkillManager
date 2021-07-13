@@ -47,7 +47,7 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
         {
             _context.employees.Remove(employee);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Employee>(employee);
+            return employee;
         }
     }
 }

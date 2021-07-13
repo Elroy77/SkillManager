@@ -1,9 +1,7 @@
 <template>
     <div class="home">
         <Sidebar/>
-        <div class="content">
-            <router-view/>
-        </div>
+        <div class="content"><router-view/></div>    
     </div>
 </template>
 

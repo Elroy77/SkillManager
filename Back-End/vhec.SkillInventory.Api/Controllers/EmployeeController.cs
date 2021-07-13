@@ -39,7 +39,7 @@ namespace vhec.SkillInventory.Api.Controllers
         {
             var employee = await _employeeRepository.GetById(id);
             if (employee == null) return NotFound($"{id} is not found");
-            return Ok(new { data = employee });
+            return Ok(employee);
 
         }
 
@@ -67,7 +67,7 @@ namespace vhec.SkillInventory.Api.Controllers
             employeefromDb.Gender = request.Gender;
             employeefromDb.JobPosition = request.JobPosition;
             var result = await _employeeRepository.UpdateEmployee(employeefromDb);
-            return Ok(new { data = result });
+            return Ok(result);
         }
 
         [HttpDelete]
@@ -77,7 +77,14 @@ namespace vhec.SkillInventory.Api.Controllers
             var getId = await _employeeRepository.GetById(id);
             if (getId == null) return NotFound($"{id} is not found");
             var result = await _employeeRepository.DeleteEmployee(getId);
-            return Ok(new { data = result });
+            return Ok(new EmployeeViewModel 
+            {
+                EmployeeId = result.Id,
+                FullName = result.FullName,
+                Gender = result.Gender,
+                JobPosition = result.JobPosition,
+                DayCreated = result.DayCreated
+            });
         }
 
     }

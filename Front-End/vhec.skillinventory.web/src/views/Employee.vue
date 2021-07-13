@@ -14,20 +14,23 @@
                     <form @submit.prevent="postEmployee">
 
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Full name</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Gender</label>
+                            <label for="recipient-name" class="col-form-label" style="margin-right:370px">Full name</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName" placeholder="Enter name...">
+                        </div>                   
+                        <div class="form-group" style="margin-right:360px">
+                            <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePost.gender" class="form-control">
+                                <option value="3">-- Select --</option>
                             <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
                                 {{ option.text }}
                             </option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Position</label>
+                        
+                        <div class="form-group" style="margin-right:360px">
+                            <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePost.jobPosition" class="form-control">
+                                <option value="5">-- Select --</option>
                                 <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
                                     {{ option.text }}
                                 </option>
@@ -59,25 +62,28 @@
                 </button>
             </div>
             <br>
-            <h5 id="EmployeeIdUpdate">{{part.employeeId}}</h5>
+            <h5 id="EmployeeIdUpdate">ID: <base-input ref="EmployeeIdUpdate">{{part.id}}</base-input></h5>
+            
                 <div class="modal-body">
                     <form @submit.prevent="putEmployee" method="post">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Full name</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName"
-                            >
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Gender</label>
+                            <label for="recipient-name" class="col-form-label" style="margin-right:370px">Full name</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName" placeholder="Enter name...">
+                        </div>                   
+                        <div class="form-group" style="margin-right:360px">
+                            <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePut.gender" class="form-control">
-                                <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
-                                    {{ option.text }}
-                                </option>
+                                <option value="3">-- Select --</option>
+                            <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
+                                {{ option.text }}
+                            </option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Position</label>
+                       
+                        <div class="form-group" style="margin-right:360px">
+                            <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePut.jobPosition" class="form-control">
+                                <option value="5">-- Select --</option>
                                 <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
                                     {{ option.text }}
                                 </option>
@@ -110,7 +116,7 @@
             </div>
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item block-email" style="color:red">Id: {{part.employeeId}}</li>
+                        <li class="list-group-item block-email" style="color:red">Id: {{part.id}}</li>
                         <li class="list-group-item" style="color:#0000FF" >full Name: {{part.fullName}}</li>
                         <li class="list-group-item status--male" v-if="part.gender == 0">Gender: Male</li>
                         <li class="list-group-item status--female" v-else-if="part.gender == 1" >Gender: Female</li>
@@ -167,7 +173,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr-shadow" v-for="item in list" :key="item.employeeId">      
+                        <tr class="tr-shadow" v-for="item in list" :key="item.id">      
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
@@ -189,13 +195,13 @@
                             <td>
                                 <div class="table-data-feature">
                                     <button class="item" data-placement="top" title="detail" data-toggle="modal" data-target="#detail">
-                                        <i class="material-icons" v-on:click="getEmployeeId(item.employeeId)">İ</i>
+                                        <i class="material-icons" v-on:click="getEmployeeId(item.id)">İ</i>
                                     </button>
                                     <button class="item" data-placement="top" title="Edit" data-toggle="modal" data-target="#update" >
-                                        <i class="zmdi zmdi-edit" v-on:click="getEmployeeId(item.employeeId)">✎</i>
+                                        <i class="zmdi zmdi-edit" v-on:click="getEmployeeId(item.id)">✎</i>
                                     </button>
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="zmdi zmdi-delete" v-on:click="deleteEmployee(item.employeeId)">☒</i>
+                                        <i class="zmdi zmdi-delete" v-on:click="deleteEmployee(item.id)">☒</i>
                                     </button>
                                 </div>
                             </td>
@@ -220,18 +226,20 @@
             return { 
                 list: undefined,
                 part: {},
-                skill: [] ,
+                skill: ['C#','Html', 'Css'] ,
                 employeePost: {
-                    fullName:''                  
+                    fullName:'',
+                    gender:3,
+                    jobPosition:5                  
                 },
                 employeePut: {
                     fullName:'',
                 },
                 optionGenders: [
-                    { text: 'Male', value: 0 },
-                    { text: 'Female', value: 1 },
-                    { text: 'Other', value: 2 },
-                ],
+                { text: 'Male', value: 0 },
+                { text: 'Female', value: 1 },
+                { text: 'Other', value: 2 },
+                                ],
                 optionPositions: [
                     { text: 'Manager', value: 0 },
                     { text: 'Developer', value: 1 },
@@ -270,20 +278,21 @@
             },
             putEmployee()
             {
-                let id = document.getElementById('EmployeeIdUpdate').innerHTML
-                let idm = document.getElementById('update')
-                this.axios.put('http://localhost:5000/api/employee/'+id, this.employeePut)
+                let idEmployee = this.$refs.EmployeeIdUpdate.innerHTML
+                this.axios.put('http://localhost:5000/api/employee/'+idEmployee, this.employeePut)
                 .then(() =>{
                     this.getEmployee()
                 })
                 .then(response => console.log(response))
-                idm.modal("hide");
                 this.$toasted.show('Update employee success!').goAway(1500)                
             },
             deleteEmployee(id)
             {
-                this.axios.delete('http://localhost:5000/api/employee/'+id).then(() =>{
-                    this.getEmployee()})
+                this.axios.delete('http://localhost:5000/api/employee/'+id)
+                .then(() =>{
+                    this.getEmployee()}
+                )
+                .then(response => console.log(response))
                 this.$toasted.show('Delete employee success!').goAway(1500)
 
             },

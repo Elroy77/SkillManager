@@ -6,7 +6,7 @@
         <div class="menu-items">
             <router-link to="/" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Home
+                    Overview
                 </div>
             </router-link>
             <router-link to="/employee" active-class="active" tag="button" exact class="side-btn">
