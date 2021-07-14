@@ -63,7 +63,9 @@
             </div>
             <br>
             <h5 id="EmployeeIdUpdate">ID: <base-input ref="EmployeeIdUpdate">{{part.id}}</base-input></h5>
-            
+            <!-- <base-input ref="EmployeefullNameUpdate">{{part.fullName}}</base-input>
+            <base-input ref="EmployeegenderUpdate">{{part.gender}}</base-input>
+            <base-input ref="EmployeejobPositionUpdate">{{part.jobPosition}}</base-input> -->
                 <div class="modal-body">
                     <form @submit.prevent="putEmployee" method="post">
                         <div class="form-group">
@@ -154,7 +156,7 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
-                <div class="table-data__tool-right">
+                <div class="table-data__tool-right" style="margin-right:50px">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#add">
                         <i class="zmdi zmdi-plus"></i>＋add new</button>
                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -190,7 +192,7 @@
                                 <span class="role analytical" v-else-if="item.jobPosition == 4">Analytical</span>
                             </td>
                             <td>
-                                {{item.dayCreated}}
+                                {{moment(item.dayCreated).format('YYYY-MM-DD')}}
                             </td>
                             <td>
                                 <div class="table-data-feature">
@@ -234,7 +236,7 @@
                     jobPosition:5                  
                 },
                 employeePut: {
-                    fullName:'',
+                    fullName: '',
                     gender:3,
                     jobPosition:5           
                 },
@@ -299,6 +301,7 @@
                 this.$toasted.show('Delete employee success!').goAway(1500)
 
             },
+            
         },
         mounted() {  
             this.getEmployee()     

@@ -6,12 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using vhec.SkillInventory.Api.Models;
 using vhec.SkillInventory.Api.Models.EmployeeRequest;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Functions;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
-using vhec.SkillInventory.Logic;
 
 namespace vhec.SkillInventory.Api.Controllers
 {
@@ -56,7 +54,7 @@ namespace vhec.SkillInventory.Api.Controllers
             });
             return Ok(result);
         }
-
+        
         [Route("{id}")]
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
@@ -77,14 +75,7 @@ namespace vhec.SkillInventory.Api.Controllers
             var getId = await _employeeRepository.GetById(id);
             if (getId == null) return NotFound($"{id} is not found");
             var result = await _employeeRepository.DeleteEmployee(getId);
-            return Ok(new EmployeeViewModel 
-            {
-                EmployeeId = result.Id,
-                FullName = result.FullName,
-                Gender = result.Gender,
-                JobPosition = result.JobPosition,
-                DayCreated = result.DayCreated
-            });
+            return Ok(result);
         }
 
     }
