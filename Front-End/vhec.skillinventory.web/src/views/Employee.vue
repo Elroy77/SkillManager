@@ -235,6 +235,8 @@
                 },
                 employeePut: {
                     fullName:'',
+                    gender:3,
+                    jobPosition:5           
                 },
                 optionGenders: [
                 { text: 'Male', value: 0 },
@@ -247,11 +249,7 @@
                     { text: 'Tester', value: 2 },
                     { text: 'Designer', value: 3 },
                     { text: 'Analytical', value: 4 }
-                ],
-                create() {
-                    this.getEmployee()
-                    this.getEmployeeId()
-                }
+                ]
             }
         },
         methods:{
