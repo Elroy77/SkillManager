@@ -44,14 +44,7 @@ namespace vhec.SkillInventory.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {
-            var result = await _employeeLogic.CreateEmployeeAsync(new Employee()
-            {
-                Id = request.Id,
-                FullName = request.FullName,
-                Gender = request.Gender,
-                JobPosition = request.JobPosition,
-                DetailSkill = request.detailSkills
-            });
+            var result = await _employeeLogic.CreateEmployeeAsync(request);
             return Ok(result);
         }
         

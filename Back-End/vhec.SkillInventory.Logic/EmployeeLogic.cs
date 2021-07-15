@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
+using vhec.SkillInventory.Logic.EmployeeRequests;
 using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Logic
@@ -13,7 +14,7 @@ namespace vhec.SkillInventory.Logic
         Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync();
         Task<Employee> GetByIdAsync(Guid id);
         Task<EmployeeDto> GetEmployeeAsync(Guid id);
-        Task<EmployeeDto> CreateEmployeeAsync(Employee employee);
+        Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
         Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
         Task<EmployeeDto> DeleteEmployeeAsync(Employee employee);
     }
@@ -43,8 +44,10 @@ namespace vhec.SkillInventory.Logic
             return  await _employeeRepository.GetById(id);
         }
 
-        public async Task<EmployeeDto> CreateEmployeeAsync(Employee employee)
+        public async Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request)
         {
+            var employee = new Employee();
+            _mapper.Map<CreateRequest, Employee>(request, employee);
             var result = await _employeeRepository.CreateEmployee(employee);
             return _mapper.Map<EmployeeDto>(result);
         }
