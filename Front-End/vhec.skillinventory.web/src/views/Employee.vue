@@ -21,7 +21,7 @@
                             <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePost.gender" class="form-control">
                                 <option value="3">-- Select --</option>
-                            <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
+                            <option v-for="(option,index) in optionGenders" v-bind:value="option.value" v-bind:key="index">
                                 {{ option.text }}
                             </option>
                             </select>
@@ -31,7 +31,7 @@
                             <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePost.jobPosition" class="form-control">
                                 <option value="5">-- Select --</option>
-                                <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
+                                <option v-for="(option,index) in optionPositions" v-bind:value="option.value" v-bind:key="index" >
                                     {{ option.text }}
                                 </option>
                             </select>
@@ -104,7 +104,7 @@
                             <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePut.gender" class="form-control">
                                 <option value="3">-- Select --</option>
-                            <option v-for="option in optionGenders" v-bind:value="option.value" v-bind:key="option">
+                            <option v-for="(option,index) in optionGenders" v-bind:value="option.value" v-bind:key="index">
                                 {{ option.text }}
                             </option>
                             </select>
@@ -114,7 +114,7 @@
                             <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePut.jobPosition" class="form-control">
                                 <option value="5">-- Select --</option>
-                                <option v-for="option in optionPositions" v-bind:value="option.value" v-bind:key="option" >
+                                <option v-for="(option,index) in optionPositions" v-bind:value="option.value" v-bind:key="index" >
                                     {{ option.text }}
                                 </option>
                             </select>
@@ -178,7 +178,7 @@
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search">
                         <select class="form-control" name="select" id="select">
                             <option>-- Select --</option>
-                            <option v-for="skill in listSkill" :key="skill.id">{{skill.name}}</option>
+                            <option v-for="(skill,index) in listSkill" :key="index">{{skill.name}}</option>
                         </select>
                         &nbsp;&nbsp;
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -203,7 +203,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr-shadow" v-for="item in listEmployee" :key="item.id">      
+                        <tr class="tr-shadow" v-for="(item,index) in listEmployee" :key="index">      
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
@@ -248,8 +248,8 @@
     import Vue from 'vue';
     import axios from 'axios'
     import VueAxios from 'vue-axios'
-    import EmployeeService from '../APIServices/EmployeeService';
-    import SkillService from '../APIServices/SkillService'
+    import EmployeeService from '@/APIServices/EmployeeService';
+    import SkillService from '@/APIServices/SkillService'
 
     Vue.use(VueAxios, axios)
     export default {
