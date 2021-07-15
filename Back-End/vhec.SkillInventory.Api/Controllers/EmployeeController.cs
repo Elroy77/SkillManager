@@ -10,6 +10,7 @@ using vhec.SkillInventory.Api.Models.EmployeeRequest;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Functions;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
+using vhec.SkillInventory.Api.Models;
 
 namespace vhec.SkillInventory.Api.Controllers
 {
@@ -45,12 +46,13 @@ namespace vhec.SkillInventory.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {
-            var result = await _employeeRepository.CreateEmployee(new DAL.Entities.Employee()
+            var result = await _employeeRepository.CreateEmployee(new Employee()
             {
                 Id = request.Id,
                 FullName = request.FullName,
                 Gender = request.Gender,
-                JobPosition = request.JobPosition
+                JobPosition = request.JobPosition,
+                detailSkills = request.detailSkills
             });
             return Ok(result);
         }

@@ -37,9 +37,13 @@
                             </select>
                         </div>
                         <div>
-                            <label for="tags-basic">Add Skill</label>
+                            <label for="tags-basic" style="margin-right:380px">Add Skill</label>
                             <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
                         </div>
+                         <div class="form-group" style="margin-right:370px">
+                            <label for="recipient-name" class="col-form-label" style="margin-right:0px">Experience</label>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Number...">
+                        </div>     
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="postEmployee()" data-dismiss="modal" >Create</button>
@@ -129,7 +133,7 @@
                         <li class="list-group-item " v-else-if="part.jobPosition == 3">Job position: Designer</li>
                         <li class="list-group-item " v-else-if="part.jobPosition == 4">Job position: Analytical</li>
                         <li class="list-group-item">Skill:</li>
-                        <li class="list-group-item">Day Created: {{part.dayCreated}}</li>
+                        <li class="list-group-item">Day Created: {{moment(part.dayCreated).format('YYYY-MM-DD')}}</li>
                         <li class="list-group-item">Update at: {{part.dayCreated}}</li>
                     </ul> 
                     <div class="modal-footer">
@@ -233,7 +237,21 @@
                 employeePost: {
                     fullName:'',
                     gender:3,
-                    jobPosition:5                  
+                    jobPosition:5,
+                    detailSkills: [
+                        {
+                            skillID:1,
+                            experience:14
+                        },
+                        {
+                            skillID:2,
+                            experience:2
+                        },
+                        {
+                            skillID:3,
+                            experience:2
+                        }
+                    ]                 
                 },
                 employeePut: {
                     fullName: '',

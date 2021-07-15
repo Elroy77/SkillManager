@@ -7,6 +7,7 @@ using vhec.SkillInventory.DAL.DataContext;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Functions;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
+using vhec.SkillInventory.Logic.ViewModels;
 
 namespace vhec.SkillInventory.Logic
 {

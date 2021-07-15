@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Enums;
 
 namespace vhec.SkillInventory.Api.Models.EmployeeRequest
@@ -17,5 +18,6 @@ namespace vhec.SkillInventory.Api.Models.EmployeeRequest
         public Gender Gender { get; set; }
         [Required]
         public JobPosition JobPosition { get; set; }
+        public virtual ICollection<DetailSkill> detailSkills { get; set; }
     }
 }
