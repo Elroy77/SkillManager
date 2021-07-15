@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using vhec.SkillInventory.DAL.DataContext;
 using vhec.SkillInventory.DAL.Repositories.Functions;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
+using vhec.SkillInventory.Logic;
 
 namespace vhec.SkillInventory.Api
 {
@@ -46,7 +47,10 @@ namespace vhec.SkillInventory.Api
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeLogic, EmployeeLogic>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>(); 
+            services.AddTransient<ISkillLogic, SkillLogic>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

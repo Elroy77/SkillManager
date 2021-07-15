@@ -36,14 +36,8 @@
                                 </option>
                             </select>
                         </div>
-                        <div>
-                            <label for="tags-basic" style="margin-right:380px">Add Skill</label>
-                            <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
-                        </div>
-                         <div class="form-group" style="margin-right:370px">
-                            <label for="recipient-name" class="col-form-label" style="margin-right:0px">Experience</label>
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Number...">
-                        </div>     
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill" data-dismiss="modal" >Add new</button>
+ 
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="postEmployee()" data-dismiss="modal" >Create</button>
@@ -54,6 +48,36 @@
         </div>
         </div>
         <!-- End Modal add -->
+        <!-- Modal add skill-->
+        <!-- <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="addskill" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addskill">Add skill employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <form @submit.prevent="postEmployee">
+                        <div>
+                            <label for="tags-basic" style="margin-right:380px">Add Skill</label>
+                            <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
+                        </div>
+                         <div class="form-group" style="margin-right:370px">
+                            <label for="recipient-name" class="col-form-label" style="margin-right:0px">Experience</label>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Number...">
+                        </div>     
+                        <div class="modal-footer">
+                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="employeePost()" data-dismiss="modal" >Create</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+        </div> -->
+        <!-- End Modal add skill -->
 
         <!-- Modal update -->
         <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="update" aria-hidden="true">
@@ -152,9 +176,9 @@
                 <div class="table-data__tool-left">
                     <form class="form-inline">
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search">
-                        <select name="select" id="select" class="form-control">
-                            <option value="0">Select skill</option>
-                            <option value="1">Option #1</option>
+                        <select class="form-control" name="select" id="select">
+                            <option>-- Select --</option>
+                            <option v-for="skill in listSkill" :key="skill.id">{{skill.name}}</option>
                         </select>
                         &nbsp;&nbsp;
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -179,7 +203,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr-shadow" v-for="item in list" :key="item.id">      
+                        <tr class="tr-shadow" v-for="item in listEmployee" :key="item.id">      
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
@@ -225,13 +249,15 @@
     import axios from 'axios'
     import VueAxios from 'vue-axios'
     import EmployeeService from '../APIServices/EmployeeService';
+    import SkillService from '../APIServices/SkillService'
 
     Vue.use(VueAxios, axios)
     export default {
         name: "Employee",
         data() {
             return { 
-                list: undefined,
+                listEmployee: undefined,
+                listSkill:undefined,
                 part: {},
                 skill: ['C#','Html', 'Css'] ,
                 employeePost: {
@@ -277,7 +303,7 @@
             {
                 EmployeeService.getAllEmpl()
                     .then((resp) => {
-                        this.list = resp.data.data
+                        this.listEmployee = resp.data.data
                         console.warn(resp.data.data)
                     })  
             },
@@ -319,10 +345,18 @@
                 this.$toasted.show('Delete employee success!').goAway(1500)
 
             },
-            
+            getSkill()
+            {
+                SkillService.getAllSk()
+                    .then((resp) => {
+                        this.listSkill = resp.data.data
+                        console.warn(resp.data.data)
+                    })  
+            },          
         },
         mounted() {  
-            this.getEmployee()     
+            this.getEmployee()    
+            this.getSkill() 
         }
     }
 </script>

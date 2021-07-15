@@ -24,8 +24,4 @@
     <ProjectReference Include="..\vhec.SkillInventory.Logic\vhec.SkillInventory.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\DetailSkillRequest\" />
-  </ItemGroup>
-
 </Project>

@@ -8,4 +8,8 @@
     <ProjectReference Include="..\vhec.SkillInventory.DAL\vhec.SkillInventory.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SkillRequests\" />
+  </ItemGroup>
+
 </Project>

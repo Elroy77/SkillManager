@@ -1,48 +1,68 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using vhec.SkillInventory.DAL.DataContext;
 using vhec.SkillInventory.DAL.Entities;
-using vhec.SkillInventory.DAL.Repositories.Functions;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
-using vhec.SkillInventory.Logic.ViewModels;
+using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Logic
 {
-    public class EmployeeLogic
+    public interface IEmployeeLogic
+    {
+        Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync();
+        Task<Employee> GetByIdAsync(Guid id);
+        Task<EmployeeDto> GetEmployeeAsync(Guid id);
+        Task<EmployeeDto> CreateEmployeeAsync(Employee employee);
+        Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
+        Task<EmployeeDto> DeleteEmployeeAsync(Employee employee);
+    }
+    public class EmployeeLogic : IEmployeeLogic
     {
         private readonly IEmployeeRepository _employeeRepository;
-        public EmployeeLogic(IEmployeeRepository employeeRepository)
+        private readonly IMapper _mapper;
+
+        public EmployeeLogic(IEmployeeRepository employeeRepository, IMapper mapper)
         {
             _employeeRepository = employeeRepository;
+            _mapper = mapper;
         }
-        public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
+        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync()
         {
-            return await _employeeRepository.GetAllEmployees();
+            var result = await _employeeRepository.GetAllEmployees();
+            return _mapper.Map<IEnumerable<EmployeeDto>>(result);
+        }
+        public async Task<EmployeeDto> GetEmployeeAsync(Guid id)
+        {
+            var result = await _employeeRepository.GetById(id);
+            return _mapper.Map<EmployeeDto>(result);
         }
 
         public async Task<Employee> GetByIdAsync(Guid id)
         {
-            var result = await _employeeRepository.GetById(id);
-            return result;
+            return  await _employeeRepository.GetById(id);
         }
 
-        public async Task<Employee> CreateEmployeeAsync(DAL.Entities.Employee employee)
+        public async Task<EmployeeDto> CreateEmployeeAsync(Employee employee)
         {
             var result = await _employeeRepository.CreateEmployee(employee);
-                return result;
+            return _mapper.Map<EmployeeDto>(result);
         }
-        public async Task<Employee> UpdateEmployeeAsync(DAL.Entities.Employee employee)
+
+        public async Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request)
         {
-            var result = await _employeeRepository.UpdateEmployee(employee);
-            return result;
+            var employeefromDb = await GetByIdAsync(id);
+            if (employeefromDb == null) return new EmployeeDto();
+            employeefromDb.FullName = request.FullName;
+            employeefromDb.Gender = request.Gender;
+            employeefromDb.JobPosition = request.JobPosition;
+            var result = await _employeeRepository.UpdateEmployee(employeefromDb);
+            return _mapper.Map<EmployeeDto>(result);
         }
-        public async Task<Employee> DeleteEmployeeAsync(DAL.Entities.Employee employee)
+        public async Task<EmployeeDto> DeleteEmployeeAsync(Employee employee)
         {
             var result = await _employeeRepository.DeleteEmployee(employee);
-            return result;
+            return _mapper.Map<EmployeeDto>(result);
         }
     }
 }

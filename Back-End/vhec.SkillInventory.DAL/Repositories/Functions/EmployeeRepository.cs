@@ -14,40 +14,38 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly SkillIManagerDbContext _context;
-        private readonly IMapper _mapper;
-        public EmployeeRepository(SkillIManagerDbContext context, IMapper mapper)
+        public EmployeeRepository(SkillIManagerDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
              var employees = await _context.employees.ToListAsync();
-            return _mapper.Map<IEnumerable<Employee>>(employees);
+            return employees;
         }
         public async Task<Employee> GetById(Guid id)
         {
             var employeeId = await _context.employees.FindAsync(id);
-            return _mapper.Map<Employee>(employeeId);
+            return employeeId;
         }
         public async Task<Employee> CreateEmployee(Employee employee)
         {
             _context.employees.Add(employee);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Employee>(employee);
+            return employee;
         }
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
             _context.employees.Update(employee);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Employee>(employee);
+            return employee;
         }
         public async Task<Employee> DeleteEmployee(Employee employee)
         {
             _context.employees.Remove(employee);
             await _context.SaveChangesAsync();
-            return _mapper.Map<Employee>(employee);
+            return employee;
         }
     }
 }

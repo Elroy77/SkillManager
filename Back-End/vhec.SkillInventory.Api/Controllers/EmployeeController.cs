@@ -6,11 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using vhec.SkillInventory.Api.Models.EmployeeRequest;
 using vhec.SkillInventory.DAL.Entities;
-using vhec.SkillInventory.DAL.Repositories.Functions;
-using vhec.SkillInventory.DAL.Repositories.Interfaces;
-using vhec.SkillInventory.Api.Models;
+using vhec.SkillInventory.Logic;
+using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Api.Controllers
 {
@@ -18,17 +16,17 @@ namespace vhec.SkillInventory.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private IEmployeeRepository _employeeRepository;
+        private IEmployeeLogic _employeeLogic;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, IMapper mapper)
+        public EmployeeController(IEmployeeLogic employeeLogic)
         {
-            _employeeRepository = employeeRepository;
+            _employeeLogic = employeeLogic;
         }
         [Route("")]
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var employees = await _employeeRepository.GetAllEmployees();
+            var employees = await _employeeLogic.GetAllEmployeesAsync();
             return Ok(new { data = employees });
         }
 
@@ -36,7 +34,7 @@ namespace vhec.SkillInventory.Api.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var employee = await _employeeRepository.GetById(id);
+            var employee = await _employeeLogic.GetByIdAsync(id);
             if (employee == null) return NotFound($"{id} is not found");
             return Ok(employee);
 
@@ -46,13 +44,13 @@ namespace vhec.SkillInventory.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {
-            var result = await _employeeRepository.CreateEmployee(new Employee()
+            var result = await _employeeLogic.CreateEmployeeAsync(new Employee()
             {
                 Id = request.Id,
                 FullName = request.FullName,
                 Gender = request.Gender,
                 JobPosition = request.JobPosition,
-                detailSkills = request.detailSkills
+                DetailSkill = request.detailSkills
             });
             return Ok(result);
         }
@@ -60,13 +58,8 @@ namespace vhec.SkillInventory.Api.Controllers
         [Route("{id}")]
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
-        {
-            var employeefromDb = await _employeeRepository.GetById(id);
-            if (employeefromDb == null) return NotFound($"{id} is not found");
-            employeefromDb.FullName = request.FullName;
-            employeefromDb.Gender = request.Gender;
-            employeefromDb.JobPosition = request.JobPosition;
-            var result = await _employeeRepository.UpdateEmployee(employeefromDb);
+        {            
+            var result = await _employeeLogic.UpdateEmployeeAsync(id, request);
             return Ok(result);
         }
 
@@ -74,9 +67,9 @@ namespace vhec.SkillInventory.Api.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
-            var getId = await _employeeRepository.GetById(id);
+            var getId = await _employeeLogic.GetByIdAsync(id);
             if (getId == null) return NotFound($"{id} is not found");
-            var result = await _employeeRepository.DeleteEmployee(getId);
+            var result = await _employeeLogic.DeleteEmployeeAsync(getId);
             return Ok(result);
         }
 

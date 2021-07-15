@@ -21,7 +21,7 @@ namespace vhec.SkillInventory.DAL.DataContext
            .HasKey(e => new { e.IdDetail, e.EmployeeID, e.SkillID });
             modelBuilder.Entity<DetailSkill>()
             .HasOne(pt => pt.Employee)
-            .WithMany(p => p.detailSkills)
+            .WithMany(p => p.DetailSkill)
             .HasForeignKey(pt => pt.EmployeeID);
 
             modelBuilder.Entity<DetailSkill>()

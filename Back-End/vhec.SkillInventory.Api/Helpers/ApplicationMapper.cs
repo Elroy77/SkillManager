@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using vhec.SkillInventory.Api.Models;
 using vhec.SkillInventory.DAL.Entities;
+using vhec.SkillInventory.Logic;
 
 namespace vhec.SkillInventory.Api.Helpers
 {
@@ -12,7 +8,8 @@ namespace vhec.SkillInventory.Api.Helpers
     {
         public ApplicationMapper()
         {
-            CreateMap<Employee, EmployeeViewModel>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<Skill, SkillDto>().ReverseMap();
         }
     }
 }
