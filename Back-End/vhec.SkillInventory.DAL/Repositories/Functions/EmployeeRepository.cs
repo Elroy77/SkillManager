@@ -19,37 +19,48 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             _context = context;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees(string FullName)
+        public async Task<IEnumerable<Employee>> GetAllEmployeeAsync(string FullName)
         {
             IQueryable<Employee> query = _context.employees;
             if (!string.IsNullOrEmpty(FullName))
             {
                 query = query.Where(x => x.FullName.Contains(FullName));
             }
+            //if (!string.IsNullOrEmpty(FullName) || SkillName != null)
+            //{
+            //    var query = (from e in _context.employees
+            //                  join d in _context.detailSkills on e.Id equals d.EmployeeID
+            //                  join s in _context.skills on d.SkillID equals s.Id where s.Name == SkillName && e.FullName == FullName
+            //                  select e).SingleOrDefault();
+            //}
             return await query.ToListAsync();
         }
-        public async Task<Employee> GetById(Guid id)
+        public async Task<Employee> GetByIdAsync(Guid id)
         {
             var employeeId = await _context.employees.FindAsync(id);
             return employeeId;
         }
-        public async Task<Employee> CreateEmployee(Employee employee)
+        public async Task<Employee> CreateEmployeeAsync(Employee employee)
         {
             _context.employees.Add(employee);
             await _context.SaveChangesAsync();
             return employee;
         }
-        public async Task<Employee> UpdateEmployee(Employee employee)
+        public async Task<Employee> UpdateEmployeeAsync(Employee employee)
         {
             _context.employees.Update(employee);
             await _context.SaveChangesAsync();
             return employee;
         }
-        public async Task<Employee> DeleteEmployee(Employee employee)
+        public async Task<Employee> DeleteEmployeeAsync(Employee employee)
         {
             _context.employees.Remove(employee);
             await _context.SaveChangesAsync();
             return employee;
+        }
+        public IQueryable<Employee> GetQuery()
+        {
+            return _context.employees.AsQueryable();
         }
     }
 }

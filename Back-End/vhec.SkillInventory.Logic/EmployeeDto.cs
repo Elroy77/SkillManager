@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Enums;
 
@@ -11,6 +12,6 @@ namespace vhec.SkillInventory.Logic
         public Gender Gender { get; set; }
         public JobPosition JobPosition { get; set; }
         public DateTime DayCreated { get; set; }
-        public DetailSkill DetailSkill { get; set; }
+        public ICollection<DetailSkill> DetailSkill { get; set; }
     }
 }

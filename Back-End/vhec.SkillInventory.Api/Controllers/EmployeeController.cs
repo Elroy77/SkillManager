@@ -26,7 +26,7 @@ namespace vhec.SkillInventory.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees([FromQuery] string FullName)
         {
-            var employees = await _employeeLogic.GetAllEmployeesAsync(FullName);
+            var employees = await _employeeLogic.GetAllEmployeeAsync(FullName);
             return Ok(new { data = employees });
         }
 
@@ -60,9 +60,8 @@ namespace vhec.SkillInventory.Api.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
-            var getId = await _employeeLogic.GetByIdAsync(id);
-            if (getId == null) return NotFound($"{id} is not found");
-            var result = await _employeeLogic.DeleteEmployeeAsync(getId);
+
+            var result = await _employeeLogic.DeleteEmployeeAsync(id);
             return Ok(result);
         }
 

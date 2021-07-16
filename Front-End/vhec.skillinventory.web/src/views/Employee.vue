@@ -36,6 +36,20 @@
                                 </option>
                             </select>
                         </div>
+                        <table>
+                            <tr v-for="(skill, index) in employeePost.detailSkills" :key="index">
+                                <td>
+                                    <input type="text" v-model="skill.skillID">
+                                </td>
+                                <td>
+                                    <input type="text" v-model="skill.experience">
+                                </td>
+                                <td>
+                                    <button>add </button>
+                                    <button>delete </button>
+                                </td>
+                            </tr>
+                        </table>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill" data-dismiss="modal" >Add new</button>
  
                         <div class="modal-footer">
@@ -49,7 +63,7 @@
         </div>
         <!-- End Modal add -->
         <!-- Modal add skill-->
-        <!-- <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="addskill" aria-hidden="true">
+        <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="addskill" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +90,7 @@
                 </div> 
             </div>
         </div>
-        </div> -->
+        </div>
         <!-- End Modal add skill -->
 
         <!-- Modal update -->

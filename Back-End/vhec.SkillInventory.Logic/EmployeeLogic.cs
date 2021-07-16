@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.DAL.Repositories.Interfaces;
@@ -11,12 +13,11 @@ namespace vhec.SkillInventory.Logic
 {
     public interface IEmployeeLogic
     {
-        Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync(string Fullname);
-        Task<Employee> GetByIdAsync(Guid id);
-        Task<EmployeeDto> GetEmployeeAsync(Guid id);
+        Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(string fullname);
+        Task<EmployeeDto> GetByIdAsync(Guid id);
         Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
         Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
-        Task<EmployeeDto> DeleteEmployeeAsync(Employee employee);
+        Task<bool> DeleteEmployeeAsync(Guid Id);
 
     }
     public class EmployeeLogic : IEmployeeLogic
@@ -29,44 +30,51 @@ namespace vhec.SkillInventory.Logic
             _employeeRepository = employeeRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync(string Fullname)
+        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(string fullname)
         {
-            var result = await _employeeRepository.GetAllEmployees(Fullname);
-            return _mapper.Map<IEnumerable<EmployeeDto>>(result);
-        }
-        public async Task<EmployeeDto> GetEmployeeAsync(Guid id)
-        {
-            var result = await _employeeRepository.GetById(id);
-            return _mapper.Map<EmployeeDto>(result);
+            var query = _employeeRepository.GetQuery()
+                .FilterByFullname(fullname);
+            var result = query.ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider);
+            return await Task.FromResult(result);
+            //var result = await _employeeRepository.GetAllEmployeeAsync(fullname);
+            //return _mapper.Map<IEnumerable<EmployeeDto>>(result);
         }
 
-        public async Task<Employee> GetByIdAsync(Guid id)
+        public async Task<EmployeeDto> GetByIdAsync(Guid id)
         {
-            return  await _employeeRepository.GetById(id);
+            var result = await _employeeRepository.GetByIdAsync(id);
+            return _mapper.Map<EmployeeDto>(result);
         }
 
         public async Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request)
         {
-            var employee = new Employee();
-            _mapper.Map<CreateRequest, Employee>(request, employee);
-            var result = await _employeeRepository.CreateEmployee(employee);
+            var entity = _mapper.Map<Employee>(request);
+            var result = await _employeeRepository.CreateEmployeeAsync(entity);
             return _mapper.Map<EmployeeDto>(result);
         }
 
         public async Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request)
         {
-            var employeefromDb = await GetByIdAsync(id);
-            if (employeefromDb == null) return new EmployeeDto();
-            employeefromDb.FullName = request.FullName;
-            employeefromDb.Gender = request.Gender;
-            employeefromDb.JobPosition = request.JobPosition;
-            var result = await _employeeRepository.UpdateEmployee(employeefromDb);
+            var entity = await _employeeRepository.GetByIdAsync(id);
+            if (entity == null) return new EmployeeDto();
+            entity.FullName = request.FullName;
+            entity.Gender = request.Gender;
+            entity.JobPosition = request.JobPosition;
+            var result = await _employeeRepository.UpdateEmployeeAsync(entity);
             return _mapper.Map<EmployeeDto>(result);
         }
-        public async Task<EmployeeDto> DeleteEmployeeAsync(Employee employee)
+        public async Task<bool> DeleteEmployeeAsync(Guid id)
         {
-            var result = await _employeeRepository.DeleteEmployee(employee);
-            return _mapper.Map<EmployeeDto>(result);
+            var entity = await _employeeRepository.GetByIdAsync(id);
+            if (entity != null) await _employeeRepository.DeleteEmployeeAsync(entity);
+            return await Task.FromResult(entity != null);
+        }
+    }
+    public static partial class EmployeeQueryExtensions
+    {
+        public static IQueryable<Employee> FilterByFullname(this IQueryable<Employee> source, string fullname)
+        {
+            return !string.IsNullOrEmpty(fullname) ? source.Where(x => x.FullName.Contains(fullname)) : source;
         }
     }
 }
