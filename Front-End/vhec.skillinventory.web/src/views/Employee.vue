@@ -174,14 +174,14 @@
             <h2 class="title-5 m-b-35">Employee manager</h2><br>
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search">
+                    <form class="form-inline" @submit.prevent="listEmployee">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search" v-model="listEmployee.fullName">
                         <select class="form-control" name="select" id="select">
                             <option>-- Select --</option>
                             <option v-for="(skill,index) in listSkill" :key="index">{{skill.name}}</option>
                         </select>
                         &nbsp;&nbsp;
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="searchEmployee(listEmployee.fullName)">Search</button>
                     </form>
                 </div>
                 <div class="table-data__tool-right" style="margin-right:50px">
@@ -256,8 +256,8 @@
         name: "Employee",
         data() {
             return { 
-                listEmployee: undefined,
-                listSkill:undefined,
+                listEmployee: {},
+                listSkill:{},
                 part: {},
                 skill: ['C#','Html', 'Css'] ,
                 employeePost: {
@@ -307,7 +307,13 @@
                         console.warn(resp.data.data)
                     })  
             },
-
+            searchEmployee(FullName) {
+                EmployeeService.getlistEmpl(FullName)
+                    .then((resp) => {
+                        this.listEmployee = resp.data.data
+                        console.warn(resp.data.data)
+                    })  
+            },
             getEmployeeId(id) {
                 EmployeeService.getByIdEmpl(id)
                     .then((result) => {

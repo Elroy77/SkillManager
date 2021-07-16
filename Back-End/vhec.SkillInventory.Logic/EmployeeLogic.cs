@@ -11,12 +11,13 @@ namespace vhec.SkillInventory.Logic
 {
     public interface IEmployeeLogic
     {
-        Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync();
+        Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync(string Fullname);
         Task<Employee> GetByIdAsync(Guid id);
         Task<EmployeeDto> GetEmployeeAsync(Guid id);
         Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
         Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
         Task<EmployeeDto> DeleteEmployeeAsync(Employee employee);
+
     }
     public class EmployeeLogic : IEmployeeLogic
     {
@@ -28,9 +29,9 @@ namespace vhec.SkillInventory.Logic
             _employeeRepository = employeeRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync()
+        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync(string Fullname)
         {
-            var result = await _employeeRepository.GetAllEmployees();
+            var result = await _employeeRepository.GetAllEmployees(Fullname);
             return _mapper.Map<IEnumerable<EmployeeDto>>(result);
         }
         public async Task<EmployeeDto> GetEmployeeAsync(Guid id)

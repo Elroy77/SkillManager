@@ -9,7 +9,7 @@ namespace vhec.SkillInventory.DAL.Repositories.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<IEnumerable<Employee>> GetAllEmployees();
+        Task<IEnumerable<Employee>> GetAllEmployees(string FullName);
         Task<Employee> GetById(Guid id);
         Task<Employee> CreateEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);

@@ -24,9 +24,9 @@ namespace vhec.SkillInventory.Api.Controllers
         }
         [Route("")]
         [HttpGet]
-        public async Task<IActionResult> GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees([FromQuery] string FullName)
         {
-            var employees = await _employeeLogic.GetAllEmployeesAsync();
+            var employees = await _employeeLogic.GetAllEmployeesAsync(FullName);
             return Ok(new { data = employees });
         }
 

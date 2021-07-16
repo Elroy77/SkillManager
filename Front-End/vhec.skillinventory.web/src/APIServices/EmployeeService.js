@@ -4,6 +4,10 @@ class EmployeeSevice {
         return http.get("api/employee/")
     }
 
+    getlistEmpl(name) {
+        return http.get("api/employee/?FullName="+name)
+    }
+
     getByIdEmpl(id) {
         return http.get("api/employee/"+id)
     }

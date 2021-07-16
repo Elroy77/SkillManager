@@ -19,10 +19,14 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             _context = context;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<IEnumerable<Employee>> GetAllEmployees(string FullName)
         {
-             var employees = await _context.employees.ToListAsync();
-            return employees;
+            IQueryable<Employee> query = _context.employees;
+            if (!string.IsNullOrEmpty(FullName))
+            {
+                query = query.Where(x => x.FullName.Contains(FullName));
+            }
+            return await query.ToListAsync();
         }
         public async Task<Employee> GetById(Guid id)
         {
