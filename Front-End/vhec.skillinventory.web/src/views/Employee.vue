@@ -1,7 +1,7 @@
 <template>
 <div class="row">   
         <!-- Modal add -->
-        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -36,22 +36,47 @@
                                 </option>
                             </select>
                         </div>
+                        <label for="exampleInputEmail1" style="margin-right:380px">Add Skill</label>
                         <table>
+                        <div class="form-group" style="margin-left:30px">
+                            <div class="row">
+                                <div class="col-md-4" style="margin-top:6px">
+                                    <label for="exampleInputEmail1">Skill name</label>
+                                    <select class="form-control" name="select" id="select">
+                                        <option>-- Select --</option>
+                                        <option v-for="(skill,index) in listSkill" :key="index">{{skill.id}}.{{skill.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="recipient-name" class="col-form-label">Experience</label>
+                                    <input type="number" class="form-control" id="recipient-name" placeholder="Number...">
+                                </div> 
+                                <div class="col-md-4" style="margin-top:37px">
+                                    <button type="button" class="btn btn-info" id="btnAdd" name="btnAdd" v-on:click="postEmployee()">Add</button>
+                                </div>
+                            </div>   
+                        </div>
+                        </table>
+                        <table>
+
                             <tr v-for="(skill, index) in employeePost.detailSkills" :key="index">
                                 <td>
-                                    <input type="text" v-model="skill.skillID">
-                                </td>
+                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
+                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
+                                    <button type="button" class="btn btn-danger">X</button>
+                                </td>                                
+                                <!-- <td>
+                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
+                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
+                                    <button type="button" class="btn btn-danger">X</button>
+                                </td>                                
                                 <td>
-                                    <input type="text" v-model="skill.experience">
-                                </td>
-                                <td>
-                                    <button>add </button>
-                                    <button>delete </button>
-                                </td>
+                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
+                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
+                                    <button type="button" class="btn btn-danger">X</button>
+                                </td> -->
                             </tr>
-                        </table>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addskill" data-dismiss="modal" >Add new</button>
- 
+                        </table> 
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="postEmployee()" data-dismiss="modal" >Create</button>
@@ -62,37 +87,6 @@
         </div>
         </div>
         <!-- End Modal add -->
-        <!-- Modal add skill-->
-        <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="addskill" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addskill">Add skill employee</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-                <div class="modal-body">
-                    <form @submit.prevent="postEmployee">
-                        <div>
-                            <label for="tags-basic" style="margin-right:380px">Add Skill</label>
-                            <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
-                        </div>
-                         <div class="form-group" style="margin-right:370px">
-                            <label for="recipient-name" class="col-form-label" style="margin-right:0px">Experience</label>
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Number...">
-                        </div>     
-                        <div class="modal-footer">
-                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="employeePost()" data-dismiss="modal" >Create</button>
-                        </div>
-                    </form>
-                </div> 
-            </div>
-        </div>
-        </div>
-        <!-- End Modal add skill -->
-
         <!-- Modal update -->
         <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="update" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -282,11 +276,11 @@
                         {
                             skillID:1,
                             experience:14
-                        },
+                        },                        
                         {
                             skillID:2,
                             experience:2
-                        },
+                        },                       
                         {
                             skillID:3,
                             experience:2

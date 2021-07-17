@@ -12,7 +12,7 @@ using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -22,7 +22,6 @@ namespace vhec.SkillInventory.Api.Controllers
         {
             _employeeLogic = employeeLogic;
         }
-        [Route("")]
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees([FromQuery] string FullName)
         {
@@ -40,7 +39,6 @@ namespace vhec.SkillInventory.Api.Controllers
 
         }
 
-        [Route("")]
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateRequest request)
         {

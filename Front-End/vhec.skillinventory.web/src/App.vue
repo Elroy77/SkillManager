@@ -4,7 +4,7 @@
       <div class="col-12">
          <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="col-1">
-              <a class="navbar-brand" href="/Dashboard">
+              <a class="navbar-brand" href="/">
                 <img src="../src/assets/images/logo.jpg" alt="Logo" style="width:40px;">
               </a>
             </div>
