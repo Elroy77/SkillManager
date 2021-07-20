@@ -19,19 +19,20 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             _context = context;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployeeAsync(string FullName)
+        public async Task<IEnumerable<Employee>> GetAllEmployeeAsync(string fullname)
         {
             IQueryable<Employee> query = _context.employees;
-            if (!string.IsNullOrEmpty(FullName))
+            if (!string.IsNullOrEmpty(fullname))
             {
-                query = query.Where(x => x.FullName.Contains(FullName));
+                query = query.Where(x => x.FullName.Contains(fullname));
             }
-            //if (!string.IsNullOrEmpty(FullName) || SkillName != null)
+            //if (!string.IsNullOrEmpty(skillName))
             //{
-            //    var query = (from e in _context.employees
-            //                  join d in _context.detailSkills on e.Id equals d.EmployeeID
-            //                  join s in _context.skills on d.SkillID equals s.Id where s.Name == SkillName && e.FullName == FullName
-            //                  select e).SingleOrDefault();
+            //     query = query (from e in _context.employees
+            //                 join d in _context.detailSkills on e.Id equals d.EmployeeID
+            //                 join s in _context.skills on d.SkillID equals s.Id
+            //                 where s.Name == skillName && e.FullName == fullname
+            //                 select e).SingleOrDefault();
             //}
             return await query.ToListAsync();
         }

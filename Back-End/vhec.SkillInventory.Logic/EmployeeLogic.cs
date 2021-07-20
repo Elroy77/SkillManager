@@ -36,8 +36,6 @@ namespace vhec.SkillInventory.Logic
                 .FilterByFullname(fullname);
             var result = query.ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider);
             return await Task.FromResult(result);
-            //var result = await _employeeRepository.GetAllEmployeeAsync(fullname);
-            //return _mapper.Map<IEnumerable<EmployeeDto>>(result);
         }
 
         public async Task<EmployeeDto> GetByIdAsync(Guid id)

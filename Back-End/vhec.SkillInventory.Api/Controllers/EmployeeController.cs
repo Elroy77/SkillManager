@@ -30,7 +30,7 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var employee = await _employeeLogic.GetByIdAsync(id);
@@ -46,7 +46,7 @@ namespace vhec.SkillInventory.Api.Controllers
             return Ok(result);
         }
         
-        [Route("{id}")]
+        [Route("{id:Guid}")]
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateRequest request)
         {            
@@ -55,7 +55,7 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
 

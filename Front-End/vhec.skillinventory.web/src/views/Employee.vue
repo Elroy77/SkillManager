@@ -42,39 +42,30 @@
                             <div class="row">
                                 <div class="col-md-4" style="margin-top:6px">
                                     <label for="exampleInputEmail1">Skill name</label>
-                                    <select class="form-control" name="select" id="select">
-                                        <option>-- Select --</option>
-                                        <option v-for="(skill,index) in listSkill" :key="index">{{skill.id}}.{{skill.name}}</option>
+                                    <select class="form-control" name="select" id="select" v-model="skillEmployeePost.skillID">
+                                        <option value="0">-- Select --</option>
+                                        <option v-for="(skill,index) in listSkill" :key="index" :value="skill.id" >{{skill.name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="recipient-name" class="col-form-label">Experience</label>
-                                    <input type="number" class="form-control" id="recipient-name" placeholder="Number...">
+                                    <input type="number" class="form-control" id="recipient-name" placeholder="Number..."
+                                    v-model="skillEmployeePost.experience">
                                 </div> 
                                 <div class="col-md-4" style="margin-top:37px">
-                                    <button type="button" class="btn btn-info" id="btnAdd" name="btnAdd" v-on:click="postEmployee()">Add</button>
+                                    <button type="button" class="btn btn-info" id="btnAdd" name="btnAdd" v-on:click="addSkill()">Add</button>
                                 </div>
                             </div>   
                         </div>
                         </table>
-                        <table>
+                        <table style="margin-left:10px">
 
                             <tr v-for="(skill, index) in employeePost.detailSkills" :key="index">
                                 <td>
-                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
-                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
-                                    <button type="button" class="btn btn-danger">X</button>
+                                    <input class="inputSkill" type="number" v-model="skill.skillID" disabled>
+                                    <input class="inputSkill" type="number" v-model="skill.experience" disabled>
+                                    <button type="button" class="btn btn-danger" v-on:click="removeSkill(skill)">X</button>
                                 </td>                                
-                                <!-- <td>
-                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
-                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
-                                    <button type="button" class="btn btn-danger">X</button>
-                                </td>                                
-                                <td>
-                                    <input  type="text" v-model="skill.skillID" disabled style="height:35px">
-                                    <input type="text" v-model="skill.experience" disabled style="height:35px">
-                                    <button type="button" class="btn btn-danger">X</button>
-                                </td> -->
                             </tr>
                         </table> 
                         <div class="modal-footer">
@@ -129,7 +120,6 @@
                         </div>
                         <div>
                             <label for="tags-basic">Update Skill</label>
-                            <b-form-tags input-id="tags-basic" v-model="skill"></b-form-tags>
                         </div>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -267,25 +257,19 @@
                 listEmployee: {},
                 listSkill:{},
                 part: {},
-                skill: ['C#','Html', 'Css'] ,
                 employeePost: {
                     fullName:'',
                     gender:3,
                     jobPosition:5,
                     detailSkills: [
-                        {
-                            skillID:1,
-                            experience:14
-                        },                        
-                        {
-                            skillID:2,
-                            experience:2
-                        },                       
-                        {
-                            skillID:3,
-                            experience:2
-                        }
+                        {  
+
+                        }                    
                     ]                 
+                },
+                skillEmployeePost:{
+                    skillID:0,
+                    experience:null
                 },
                 employeePut: {
                     fullName: '',
@@ -296,7 +280,7 @@
                 { text: 'Male', value: 0 },
                 { text: 'Female', value: 1 },
                 { text: 'Other', value: 2 },
-                                ],
+                ],
                 optionPositions: [
                     { text: 'Manager', value: 0 },
                     { text: 'Developer', value: 1 },
@@ -366,7 +350,23 @@
                         this.listSkill = resp.data.data
                         console.warn(resp.data.data)
                     })  
-            },          
+            }, 
+            addSkill() {
+                this.employeePost.detailSkills.push(
+                    {skillID:this.skillEmployeePost.skillID,
+                experience:this.skillEmployeePost.experience}
+                )                
+                console.log(this.skillEmployeePost)
+                this.$toasted.show('Add skill success!').goAway(1500)
+                       this.skillEmployeePost.skillID = 0,
+                       this.skillEmployeePost.experience = null        
+
+            },
+            removeSkill(skill) {
+                this.employeePost.detailSkills.splice(skill,1)
+                this.$toasted.show('delete skill employee success!').goAway(1500)                
+
+            }         
         },
         mounted() {  
             this.getEmployee()    
@@ -375,6 +375,13 @@
     }
 </script>
 <style scoped>
+
+.inputSkill {
+    height:35px;
+    border: none;
+    border-color: transparent;
+    background-color:white
+}
 .table-data {
     height: 472px;
     overflow-y: auto;
