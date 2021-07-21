@@ -13,8 +13,8 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private readonly SkillIManagerDbContext _context;
-        public EmployeeRepository(SkillIManagerDbContext context)
+        private readonly SkillManagerDbContext _context;
+        public EmployeeRepository(SkillManagerDbContext context)
         {
             _context = context;
         }

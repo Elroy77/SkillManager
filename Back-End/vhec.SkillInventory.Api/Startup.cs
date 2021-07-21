@@ -31,7 +31,7 @@ namespace vhec.SkillInventory.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SkillIManagerDbContext>(option =>
+            services.AddDbContext<SkillManagerDbContext>(option =>
             {
                 option.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
@@ -48,9 +48,13 @@ namespace vhec.SkillInventory.Api
                        .AllowAnyHeader();
             }));
             services.AddTransient<IEmployeeLogic, EmployeeLogic>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>(); 
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
             services.AddTransient<ISkillLogic, SkillLogic>();
-            services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>(); 
+
+            services.AddTransient<IDetailSkillLogic, DetailSkillLogic>();
+            services.AddScoped<IDetailSkillRepository, DetailSkillRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

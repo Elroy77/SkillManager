@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.Logic;
+using vhec.SkillInventory.Logic.DetailSkillRequests;
 using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Api.Helpers
@@ -12,6 +13,8 @@ namespace vhec.SkillInventory.Api.Helpers
             CreateMap<Employee, EmployeeDto>().ReverseMap();
             CreateMap<Skill, SkillDto>().ReverseMap();
             CreateMap<CreateRequest, Employee>().ReverseMap();
+            CreateMap<DetailSkill, DetailSkillDto>().ReverseMap();
+            CreateMap<CreateDetailRequest, DetailSkill>().ReverseMap();
         }
     }
 }

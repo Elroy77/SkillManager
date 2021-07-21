@@ -8,9 +8,9 @@ using vhec.SkillInventory.DAL.Entities;
 
 namespace vhec.SkillInventory.DAL.DataContext
 {
-    public class SkillIManagerDbContext : DbContext
+    public class SkillManagerDbContext : DbContext
     {
-        public SkillIManagerDbContext(DbContextOptions<SkillIManagerDbContext> options) : base(options)
+        public SkillManagerDbContext(DbContextOptions<SkillManagerDbContext> options) : base(options)
         {
 
         }

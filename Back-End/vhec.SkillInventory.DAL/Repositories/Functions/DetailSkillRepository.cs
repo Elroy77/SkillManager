@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +9,18 @@ using vhec.SkillInventory.DAL.Repositories.Interfaces;
 
 namespace vhec.SkillInventory.DAL.Repositories.Functions
 {
-    public class SkillRepository : ISkillRepository
+    public class DetailSkillRepository : IDetailSkillRepository
     {
         private readonly SkillManagerDbContext _context;
-        public SkillRepository(SkillManagerDbContext context)
+        public DetailSkillRepository(SkillManagerDbContext context)
         {
             _context = context;
         }
-
-        public async Task<IEnumerable<Skill>> GetAllSkills()
+        public async Task<DetailSkill> CreateDetailAsync(DetailSkill detailSkill)
         {
-            var skills = await _context.skills.ToListAsync();
-            return skills;
+            _context.detailSkills.Add(detailSkill);
+            await _context.SaveChangesAsync();
+            return detailSkill;
         }
     }
 }

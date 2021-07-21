@@ -9,7 +9,7 @@ using vhec.SkillInventory.DAL.DataContext;
 
 namespace vhec.SkillInventory.DAL.Migrations
 {
-    [DbContext(typeof(SkillIManagerDbContext))]
+    [DbContext(typeof(SkillManagerDbContext))]
     [Migration("20210712192101_DbV2")]
     partial class DbV2
     {

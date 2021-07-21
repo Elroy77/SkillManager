@@ -8,7 +8,7 @@ using vhec.SkillInventory.DAL.DataContext;
 
 namespace vhec.SkillInventory.DAL.Migrations
 {
-    [DbContext(typeof(SkillIManagerDbContext))]
+    [DbContext(typeof(SkillManagerDbContext))]
     partial class SkillIManagerDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
