@@ -174,12 +174,11 @@
                 <div class="table-data__tool-left">
                     <form class="form-inline" @submit.prevent="listEmployee">
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search" v-model="listEmployee.fullName">
-                        <select class="form-control" name="select" id="select">
-                            <option>-- Select --</option>
+                        <select class="form-control" name="select" id="select" v-model="listEmployee.skillname">
                             <option v-for="(skill,index) in listSkill" :key="index">{{skill.name}}</option>
                         </select>
                         &nbsp;&nbsp;
-                        <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="searchEmployee(listEmployee.fullName)">Search</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="searchEmployee(listEmployee.fullName,listEmployee.skillname)">Search</button>
                     </form>
                 </div>
                 <div class="table-data__tool-right" style="margin-right:50px">
@@ -254,7 +253,9 @@
         name: "Employee",
         data() {
             return { 
-                listEmployee: {},
+                listEmployee: {
+                    skillname:"0"
+                },
                 listSkill:{},
                 part: {},
                 employeePost: {
@@ -263,7 +264,6 @@
                     jobPosition:5,
                     detailSkills: [
                         {  
-
                         }                    
                     ]                 
                 },
@@ -299,8 +299,8 @@
                         console.warn(resp.data.data)
                     })  
             },
-            searchEmployee(FullName) {
-                EmployeeService.getlistEmpl(FullName)
+            searchEmployee(fullname, skillname) {
+                EmployeeService.getlistEmplNS(fullname,skillname)
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)

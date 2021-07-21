@@ -8,6 +8,10 @@ class EmployeeSevice {
         return http.get("api/employee/?FullName="+name)
     }
 
+    getlistEmplNS(fullname, skillname) {
+            return http.get("api/employee/search/?fullname="+fullname+"&?skillname="+skillname)
+    }
+
     getByIdEmpl(id) {
         return http.get("api/employee/"+id)
     }

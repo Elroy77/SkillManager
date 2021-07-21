@@ -14,6 +14,7 @@ namespace vhec.SkillInventory.Logic
     public interface IEmployeeLogic
     {
         Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(string fullname);
+        Task<IEnumerable<EmployeeDto>> SearchEmployeeAsync(string fullname, string skillname);
         Task<EmployeeDto> GetByIdAsync(Guid id);
         Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
         Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
@@ -36,8 +37,13 @@ namespace vhec.SkillInventory.Logic
                 .FilterByFullname(fullname);
             var result = query.ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider);
             return await Task.FromResult(result);
-        }
 
+        }
+        public async Task<IEnumerable<EmployeeDto>> SearchEmployeeAsync(string fullname, string skillname)
+        {
+            var result = await _employeeRepository.SearchEmployeeAsync(fullname,skillname);
+            return _mapper.Map<IEnumerable<EmployeeDto>>(result);
+        }
         public async Task<EmployeeDto> GetByIdAsync(Guid id)
         {
             var result = await _employeeRepository.GetByIdAsync(id);

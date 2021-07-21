@@ -26,15 +26,18 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             {
                 query = query.Where(x => x.FullName.Contains(fullname));
             }
-            //if (!string.IsNullOrEmpty(skillName))
-            //{
-            //     query = query (from e in _context.employees
-            //                 join d in _context.detailSkills on e.Id equals d.EmployeeID
-            //                 join s in _context.skills on d.SkillID equals s.Id
-            //                 where s.Name == skillName && e.FullName == fullname
-            //                 select e).SingleOrDefault();
-            //}
             return await query.ToListAsync();
+        }
+        public async Task<IEnumerable<Employee>> SearchEmployeeAsync(string fullname, string skillname)
+        {
+            var query = (from e in _context.employees
+                         join d in _context.detailSkills
+                         on e.Id equals d.EmployeeID
+                         join s in _context.skills
+                         on d.SkillID equals s.Id
+                         where e.FullName == fullname || s.Name == skillname
+                         select e).Distinct().ToListAsync();
+            return await query;
         }
         public async Task<Employee> GetByIdAsync(Guid id)
         {

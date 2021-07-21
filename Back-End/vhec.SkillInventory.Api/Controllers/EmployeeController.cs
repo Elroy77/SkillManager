@@ -30,13 +30,20 @@ namespace vhec.SkillInventory.Api.Controllers
         }
 
         [HttpGet]
+        [Route("search")]
+        public async Task<IActionResult> SearchEmployees([FromQuery] string fullname, string skillname)
+        {
+            var employees = await _employeeLogic.SearchEmployeeAsync(fullname, skillname);
+            return Ok(new { data = employees });
+        }
+
+        [HttpGet]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var employee = await _employeeLogic.GetByIdAsync(id);
             if (employee == null) return NotFound($"{id} is not found");
             return Ok(employee);
-
         }
 
         [HttpPost]
