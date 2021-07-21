@@ -49,8 +49,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="recipient-name" class="col-form-label">Experience</label>
-                                    <input type="number" class="form-control" id="recipient-name" placeholder="Number..."
-                                    v-model="skillEmployeePost.experience">
+                                    <select v-model="skillEmployeePost.experience" class="form-control">
+                                        <option value="0">-- Select --</option>
+                                        <option v-for="(option,index) in listexp" v-bind:value="option.value" v-bind:key="index">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
                                 </div> 
                                 <div class="col-md-4" style="margin-top:37px">
                                     <button type="button" class="btn btn-info" id="btnAdd" name="btnAdd" v-on:click="addSkill()">Add</button>
@@ -60,7 +64,7 @@
                         </table>
                         <table style="margin-left:10px">
 
-                            <tr v-for="(skill, index) in employeePost.detailSkills" :key="index">
+                            <tr v-for="(skill, index) in employeePost.detailSkill" :key="index">
                                 <td>
                                     <input class="inputSkill" type="number" v-model="skill.skillID" disabled>
                                     <input class="inputSkill" type="number" v-model="skill.experience" disabled>
@@ -175,6 +179,7 @@
                     <form class="form-inline" @submit.prevent="listEmployee">
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter name..." aria-label="Search" v-model="listEmployee.fullName">
                         <select class="form-control" name="select" id="select" v-model="listEmployee.skillname">
+                            <option value="0">-- Select --</option>
                             <option v-for="(skill,index) in listSkill" :key="index">{{skill.name}}</option>
                         </select>
                         &nbsp;&nbsp;
@@ -262,14 +267,16 @@
                     fullName:'',
                     gender:3,
                     jobPosition:5,
-                    detailSkills: [
+                    detailSkill: [
                         {  
+                            skillID:1,
+                            experience:11
                         }                    
                     ]                 
                 },
                 skillEmployeePost:{
                     skillID:0,
-                    experience:null
+                    experience:0
                 },
                 employeePut: {
                     fullName: '',
@@ -287,6 +294,37 @@
                     { text: 'Tester', value: 2 },
                     { text: 'Designer', value: 3 },
                     { text: 'Analytical', value: 4 }
+                ],
+                listexp: [
+                    { text: '1 month', value: 1 },
+                    { text: '2 month', value: 2 },
+                    { text: '3 month', value: 3 },
+                    { text: '4 month', value: 4 },
+                    { text: '5 month', value: 5 },
+                    { text: '6 month', value: 6 },
+                    { text: '7 month', value: 7 },
+                    { text: '8 month', value: 8 },
+                    { text: '9 month', value: 9 },
+                    { text: '10 month', value: 10 },
+                    { text: '11 month', value: 11 },
+                    { text: '12 month', value: 12 },
+                    { text: '13 month', value: 13 },
+                    { text: '14 month', value: 14 },
+                    { text: '15 month', value: 15 },
+                    { text: '16 month', value: 16 },
+                    { text: '17 month', value: 17 },
+                    { text: '18 month', value: 18 },
+                    { text: '19 month', value: 19 },
+                    { text: '20 month', value: 20 },
+                    { text: '21 month', value: 21 },
+                    { text: '22 month', value: 22 },
+                    { text: '23 month', value: 23 },
+                    { text: '24 month', value: 24 },
+                    { text: '25 month', value: 25 },
+                    { text: '26 month', value: 26 },
+                    { text: '27 month', value: 27 },
+                    { text: '28 month', value: 28 },
+
                 ]
             }
         },
@@ -300,11 +338,20 @@
                     })  
             },
             searchEmployee(fullname, skillname) {
+                if (fullname == null)
                 EmployeeService.getlistEmplNS(fullname,skillname)
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)
-                    })  
+                    }) 
+                    else  
+                    {
+                        EmployeeService.getlistEmpl(fullname)
+                        .then((resp) => {
+                            this.listEmployee = resp.data.data
+                            console.warn(resp.data.data)
+                        }) 
+                    }
             },
             getEmployeeId(id) {
                 EmployeeService.getByIdEmpl(id)
@@ -352,18 +399,18 @@
                     })  
             }, 
             addSkill() {
-                this.employeePost.detailSkills.push(
+                this.employeePost.detailSkill.push(
                     {skillID:this.skillEmployeePost.skillID,
                 experience:this.skillEmployeePost.experience}
                 )                
                 console.log(this.skillEmployeePost)
                 this.$toasted.show('Add skill success!').goAway(1500)
                        this.skillEmployeePost.skillID = 0,
-                       this.skillEmployeePost.experience = null        
+                       this.skillEmployeePost.experience = 0        
 
             },
             removeSkill(skill) {
-                this.employeePost.detailSkills.splice(skill,1)
+                this.employeePost.detailSkill.splice(skill,1)
                 this.$toasted.show('delete skill employee success!').goAway(1500)                
 
             }         

@@ -16,7 +16,7 @@ namespace vhec.SkillInventory.DAL.Entities
         [Required]
         public string Name { get; set; }
         public DateTime DayCreated { get; set; }
-        public virtual ICollection<DetailSkill> detailSkills { get; set; }
+        public virtual ICollection<DetailSkill> DetailSkills { get; set; }
 
     }
 }

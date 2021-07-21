@@ -19,15 +19,22 @@ namespace vhec.SkillInventory.DAL.DataContext
         {
             modelBuilder.Entity<DetailSkill>()
            .HasKey(e => new { e.IdDetail, e.EmployeeID, e.SkillID });
-            modelBuilder.Entity<DetailSkill>()
-            .HasOne(pt => pt.Employee)
-            .WithMany(p => p.DetailSkill)
-            .HasForeignKey(pt => pt.EmployeeID);
+
 
             modelBuilder.Entity<DetailSkill>()
-                .HasOne(pt => pt.Skill)
-                .WithMany(t => t.detailSkills)
-                .HasForeignKey(pt => pt.SkillID);
+            .HasOne(pt => pt.Employee)
+            .WithMany(dt => dt.DetailSkill)
+            .HasForeignKey(pt => new { pt.EmployeeID});
+
+
+            modelBuilder.Entity<Skill>()
+            .HasMany(pt => pt.DetailSkills)
+            .WithOne(dt => dt.Skill);
+
+            //modelBuilder.Entity<Skill>()
+            //.HasOne(pt => pt.DetailSkills)
+            //.WithMany(t => t.)
+            //.HasForeignKey(pt => pt.SkillID);
         }
         public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> skills { get; set; }

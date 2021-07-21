@@ -9,7 +9,7 @@ class EmployeeSevice {
     }
 
     getlistEmplNS(fullname, skillname) {
-            return http.get("api/employee/search/?fullname="+fullname+"&?skillname="+skillname)
+            return http.get("api/employee/search/?fullname="+fullname+"&skillname="+skillname)
     }
 
     getByIdEmpl(id) {

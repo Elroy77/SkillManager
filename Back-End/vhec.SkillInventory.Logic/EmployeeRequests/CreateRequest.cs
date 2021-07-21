@@ -19,6 +19,6 @@ namespace vhec.SkillInventory.Logic.Requests
         public Gender Gender { get; set; }
         [Required]
         public JobPosition JobPosition { get; set; }
-        public virtual ICollection<DetailSkill> detailSkills { get; set; }
+        public virtual ICollection<DetailSkill> DetailSkill { get; set; }
     }
 }

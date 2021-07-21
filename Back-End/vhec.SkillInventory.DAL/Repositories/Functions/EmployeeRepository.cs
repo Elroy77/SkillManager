@@ -35,7 +35,7 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
                          on e.Id equals d.EmployeeID
                          join s in _context.skills
                          on d.SkillID equals s.Id
-                         where e.FullName == fullname || s.Name == skillname
+                         where e.FullName.Contains(fullname) || s.Name == skillname
                          select e).Distinct().ToListAsync();
             return await query;
         }
