@@ -66,5 +66,15 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
         {
             return _context.employees.AsQueryable();
         }
+        public IEnumerable<int> GetPositionInventory()
+        {
+            var inventory = (from e in _context.employees  
+                             group e by new
+                             {
+                                 value = e.JobPosition
+                             } into si
+                             select si.Count());
+            return inventory;
+        }
     }
 }

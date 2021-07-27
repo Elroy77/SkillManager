@@ -23,5 +23,30 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             var skills = await _context.skills.ToListAsync();
             return skills;
         }
+
+        public IEnumerable<string> GetSkillName()
+        {
+            var name = (from e in _context.employees
+                        join d in _context.detailSkills
+                        on e.Id equals d.EmployeeID
+                        join s in _context.skills
+                        on d.SkillID equals s.Id
+                        select s.Name).Distinct();
+            return name.ToList();
+        }
+        public IEnumerable<int> GetSkillInventory()
+        {
+            var inventory = (from e in _context.employees
+                             join d in _context.detailSkills
+                             on e.Id equals d.EmployeeID
+                             join s in _context.skills
+                             on d.SkillID equals s.Id
+                             group s by new
+                             {
+                                 name = s.Name
+                             } into si
+                             select si.Count());
+            return inventory;
+        }
     }
 }

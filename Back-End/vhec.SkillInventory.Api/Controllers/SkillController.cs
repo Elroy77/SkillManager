@@ -25,5 +25,21 @@ namespace vhec.SkillInventory.Api.Controllers
             var skills = await _skillLogic.GetAllSkillsAsync();
             return Ok(new { data = skills });
         }
+
+        [Route("Name")]
+        [HttpGet]
+        public IEnumerable<string> GetSkillName()
+        {
+            var skills =  _skillLogic.GetSkillNameAsync();
+            return skills;
+        }
+
+        [Route("Inventory")]
+        [HttpGet]
+        public IEnumerable<int> GetSkillInventory()
+        {
+            var skills = _skillLogic.GetSkillInventoryAsync();
+            return skills;
+        }
     }
 }

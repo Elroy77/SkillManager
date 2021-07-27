@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\vhec.SkillInventory.DAL\vhec.SkillInventory.DAL.csproj" />
+    <Compile Remove="SkillRequests\**" />
+    <EmbeddedResource Remove="SkillRequests\**" />
+    <None Remove="SkillRequests\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SkillRequests\" />
+    <ProjectReference Include="..\vhec.SkillInventory.DAL\vhec.SkillInventory.DAL.csproj" />
   </ItemGroup>
 
 </Project>

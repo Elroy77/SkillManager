@@ -16,5 +16,6 @@ namespace vhec.SkillInventory.DAL.Repositories.Interfaces
         Task<Employee> UpdateEmployeeAsync(Employee employee);
         Task<Employee> DeleteEmployeeAsync(Employee employee);
         public IQueryable<Employee> GetQuery();
+        IEnumerable<int> GetPositionInventory();
     }
 }

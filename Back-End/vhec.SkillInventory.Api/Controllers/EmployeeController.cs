@@ -69,6 +69,12 @@ namespace vhec.SkillInventory.Api.Controllers
             var result = await _employeeLogic.DeleteEmployeeAsync(id);
             return Ok(result);
         }
-
+        [Route("PositionInventory")]
+        [HttpGet]
+        public IEnumerable<int> GetPositionInventory()
+        {
+            var skills = _employeeLogic.GetPositionInventory();
+            return skills;
+        }
     }
 }

@@ -10,5 +10,8 @@ namespace vhec.SkillInventory.DAL.Repositories.Interfaces
     public interface ISkillRepository
     {
         Task<IEnumerable<Skill>> GetAllSkills();
+        IEnumerable<string> GetSkillName();
+        IEnumerable<int> GetSkillInventory();
+
     }
 }

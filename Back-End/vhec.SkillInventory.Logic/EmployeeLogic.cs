@@ -19,6 +19,7 @@ namespace vhec.SkillInventory.Logic
         Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
         Task<EmployeeDto> UpdateEmployeeAsync(Guid id, UpdateRequest request);
         Task<bool> DeleteEmployeeAsync(Guid Id);
+        IEnumerable<int> GetPositionInventory();
 
     }
     public class EmployeeLogic : IEmployeeLogic
@@ -72,6 +73,11 @@ namespace vhec.SkillInventory.Logic
             var entity = await _employeeRepository.GetByIdAsync(id);
             if (entity != null) await _employeeRepository.DeleteEmployeeAsync(entity);
             return await Task.FromResult(entity != null);
+        }
+        public IEnumerable<int> GetPositionInventory()
+        {
+            var result = _employeeRepository.GetPositionInventory();
+            return result;
         }
     }
     public static partial class EmployeeQueryExtensions

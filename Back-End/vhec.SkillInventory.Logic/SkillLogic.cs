@@ -11,6 +11,8 @@ namespace vhec.SkillInventory.Logic
     public interface ISkillLogic
     {
         Task<IEnumerable<SkillDto>> GetAllSkillsAsync();
+        IEnumerable<string> GetSkillNameAsync();
+        IEnumerable<int> GetSkillInventoryAsync();
     }
     public class SkillLogic : ISkillLogic
     {
@@ -26,6 +28,17 @@ namespace vhec.SkillInventory.Logic
         {
             var result = await _skillRepository.GetAllSkills();
             return _mapper.Map<IEnumerable<SkillDto>>(result);
+        }
+
+        public IEnumerable<string> GetSkillNameAsync()
+        {
+            var result = _skillRepository.GetSkillName();
+            return result;
+        }
+        public IEnumerable<int> GetSkillInventoryAsync()
+        {
+            var result = _skillRepository.GetSkillInventory();
+            return result;
         }
     }
 }
