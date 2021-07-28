@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using vhec.SkillInventory.DAL.Entities;
 using vhec.SkillInventory.Logic;
+using vhec.SkillInventory.Logic.EmployeeRequests;
 using vhec.SkillInventory.Logic.Requests;
 
 namespace vhec.SkillInventory.Api.Controllers
@@ -23,9 +24,9 @@ namespace vhec.SkillInventory.Api.Controllers
             _employeeLogic = employeeLogic;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllEmployees([FromQuery] string FullName)
+        public async Task<IActionResult> GetAllEmployees([FromQuery] Paginator filter)
         {
-            var employees = await _employeeLogic.GetAllEmployeeAsync(FullName);
+            var employees = await _employeeLogic.GetAllEmployeeAsync(filter);
             return Ok(new { data = employees });
         }
 

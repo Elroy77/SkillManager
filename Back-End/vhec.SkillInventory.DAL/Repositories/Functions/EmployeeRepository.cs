@@ -19,13 +19,9 @@ namespace vhec.SkillInventory.DAL.Repositories.Functions
             _context = context;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployeeAsync(string fullname)
+        public async Task<IEnumerable<Employee>> GetAllEmployeeAsync()
         {
             IQueryable<Employee> query = _context.employees;
-            if (!string.IsNullOrEmpty(fullname))
-            {
-                query = query.Where(x => x.FullName.Contains(fullname));
-            }
             return await query.ToListAsync();
         }
         public async Task<IEnumerable<Employee>> SearchEmployeeAsync(string fullname, string skillname)

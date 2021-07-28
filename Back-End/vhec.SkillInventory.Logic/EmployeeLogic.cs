@@ -13,7 +13,7 @@ namespace vhec.SkillInventory.Logic
 {
     public interface IEmployeeLogic
     {
-        Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(string fullname);
+        Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(Paginator filter);
         Task<IEnumerable<EmployeeDto>> SearchEmployeeAsync(string fullname, string skillname);
         Task<EmployeeDto> GetByIdAsync(Guid id);
         Task<EmployeeDto> CreateEmployeeAsync(CreateRequest request);
@@ -32,10 +32,11 @@ namespace vhec.SkillInventory.Logic
             _employeeRepository = employeeRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(string fullname)
+        public async Task<IEnumerable<EmployeeDto>> GetAllEmployeeAsync(Paginator filter)
         {
+            var paginator = new Paginator(filter.perpage, filter.currentpage);
             var query = _employeeRepository.GetQuery()
-                .FilterByFullname(fullname);
+                .Skip((paginator.currentpage - 1)* paginator.perpage).Take(paginator.perpage);
             var result = query.ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider);
             return await Task.FromResult(result);
 

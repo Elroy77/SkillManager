@@ -243,10 +243,25 @@
             </div>
             <!-- END DATA TABLE -->
         </div>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1">◀</a>
+            </li>
+            <li class="page-item"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item">
+            <a class="page-link" href="#">▶</a>
+            </li>
+        </ul>
+        </nav>
     </div>                       
 </template>
 
 <script>
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
     import Vue from 'vue';
     import axios from 'axios'
     import VueAxios from 'vue-axios'
@@ -258,6 +273,8 @@
         name: "Employee",
         data() {
             return { 
+                perPage: 3,
+                currentPage: 1,
                 listEmployee: {
                     skillname:"0"
                 },
@@ -338,20 +355,11 @@
                     })  
             },
             searchEmployee(fullname, skillname) {
-                if (fullname == null)
                 EmployeeService.getlistEmplNS(fullname,skillname)
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)
                     }) 
-                    else  
-                    {
-                        EmployeeService.getlistEmpl(fullname)
-                        .then((resp) => {
-                            this.listEmployee = resp.data.data
-                            console.warn(resp.data.data)
-                        }) 
-                    }
             },
             getEmployeeId(id) {
                 EmployeeService.getByIdEmpl(id)
@@ -413,7 +421,7 @@
                 this.employeePost.detailSkill.splice(skill,1)
                 this.$toasted.show('delete skill employee success!').goAway(1500)                
 
-            }         
+            } 
         },
         mounted() {  
             this.getEmployee()    
