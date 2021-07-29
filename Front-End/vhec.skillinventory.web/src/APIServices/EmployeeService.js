@@ -4,8 +4,8 @@ class EmployeeSevice {
         return http.get("api/employee/")
     }
 
-    getlistEmpl(name) {
-        return http.get("api/employee/?FullName=" + name)
+    getlistEmplpaging(page) {
+        return http.get("http://localhost:5000/api/employee?perpage=3&currentpage=" + page)
     }
 
     getlistEmplNS(fullname, skillname) {

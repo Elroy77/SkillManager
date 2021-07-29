@@ -1,5 +1,6 @@
 <template>
-<div class="row">   
+    <div class="row">  
+        <div class="loading" v-if="loadingPage">loading..</div>
         <!-- Modal add -->
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true" >
         <div class="modal-dialog" role="document">
@@ -245,23 +246,20 @@
         </div>
         <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
-            <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1">◀</a>
-            </li>
-            <li class="page-item"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link">3</a></li>
-            <li class="page-item">
-            <a class="page-link" href="#">▶</a>
-            </li>
+            <li class="page-item"><a class="page-link" href="#" tabindex="-1">◀</a></li>
+            <li class="page-item"><button class="page-link" v-on:click="getEmployeePaging(1)">1</button></li>
+            <li class="page-item"><button class="page-link" v-on:click="getEmployeePaging(2)">2</button></li>
+            <li class="page-item"><button class="page-link" v-on:click="getEmployeePaging(3)">3</button></li>
+            <li class="page-item"><button class="page-link" v-on:click="getEmployeePaging(4)">4</button></li>
+            <li class="page-item"><a class="page-link" href="#">▶</a></li>
         </ul>
         </nav>
     </div>                       
 </template>
 
 <script>
-import Paginate from 'vuejs-paginate'
-Vue.component('paginate', Paginate)
+// import Paginate from 'vuejs-paginate'
+// Vue.component('paginate', Paginate)
     import Vue from 'vue';
     import axios from 'axios'
     import VueAxios from 'vue-axios'
@@ -278,6 +276,7 @@ Vue.component('paginate', Paginate)
                 listEmployee: {
                     skillname:"0"
                 },
+               loadingPage:false,
                 listSkill:{},
                 part: {},
                 employeePost: {
@@ -348,7 +347,19 @@ Vue.component('paginate', Paginate)
         methods:{
             getEmployee()
             {
-                EmployeeService.getAllEmpl()
+                this.loadingPage = true
+                    setTimeout(() => {this.loadingPage = false},1500)
+                    {
+                        EmployeeService.getAllEmpl()
+                            .then((resp) => {
+                                this.listEmployee = resp.data.data
+                                console.warn(resp.data.data)
+                            })
+                    }            
+            },
+            getEmployeePaging(page)
+            {
+                EmployeeService.getlistEmplpaging(page)
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)

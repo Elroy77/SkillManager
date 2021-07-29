@@ -6,7 +6,7 @@
         <SkillChart />
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="grid">
         <PositionChart />
       </div>
