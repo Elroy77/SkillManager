@@ -25,5 +25,6 @@ namespace vhec.SkillInventory.DAL.Entities
         public DateTime DayCreated { get; set; } = DateTime.Now;
 
         public virtual ICollection<DetailSkill> DetailSkill { get; set; }
+
     }
 }

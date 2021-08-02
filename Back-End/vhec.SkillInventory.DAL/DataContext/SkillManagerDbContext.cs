@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,11 @@ using vhec.SkillInventory.DAL.Entities;
 
 namespace vhec.SkillInventory.DAL.DataContext
 {
-    public class SkillManagerDbContext : DbContext
+    public class SkillManagerDbContext : IdentityDbContext<User, Role, Guid>
     {
+        private readonly IPasswordHasher<User> _passwordHasher = new PasswordHasher<User>();
+        private User password;
+
         public SkillManagerDbContext(DbContextOptions<SkillManagerDbContext> options) : base(options)
         {
 
@@ -31,10 +36,23 @@ namespace vhec.SkillInventory.DAL.DataContext
             .HasMany(pt => pt.DetailSkills)
             .WithOne(dt => dt.Skill);
 
-            //modelBuilder.Entity<Skill>()
-            //.HasOne(pt => pt.DetailSkills)
-            //.WithMany(t => t.)
-            //.HasForeignKey(pt => pt.SkillID);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Nguyen",
+                    LastName = "Van Manh",
+                    Email = "manhnv.dotnet@gmail.com",
+                    NormalizedEmail = "MANHNV.DOTNET@GMAIL.COM",
+                    PhoneNumber = "0358511226",
+                    UserName = "admin",
+                    NormalizedUserName = "ADMIN",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    PasswordHash = _passwordHasher.HashPassword(password,"Admin@7777$")
+                });
+
         }
         public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> skills { get; set; }
