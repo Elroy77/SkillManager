@@ -12,7 +12,7 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <form @submit.prevent="postEmployee" method="post">
+                    <form method="post">
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label" style="margin-right:370px">Full name</label>

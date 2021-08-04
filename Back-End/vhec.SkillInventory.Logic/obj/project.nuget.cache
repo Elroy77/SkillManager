@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q36juncuru64XZjipalMB3FpCsEo2c9uCdA4ZOtDxL/w7fd9aNLzIZllvBui56WFknnVuvulUv0mSPZhoHTUJQ==",
+  "dgSpecHash": "GN991bir1EN3ctdJK844Dl/Ebt0Dq9o6uU4tMbOVljRraRz4vEov05LtemOoUozVc33JxGYW7EoxiEdj3nYOhA==",
   "success": true,
-  "projectFilePath": "f:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
+  "projectFilePath": "F:\\Project\\SkillManager\\Back-End\\vhec.SkillInventory.Logic\\vhec.SkillInventory.Logic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\manh\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\manh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
