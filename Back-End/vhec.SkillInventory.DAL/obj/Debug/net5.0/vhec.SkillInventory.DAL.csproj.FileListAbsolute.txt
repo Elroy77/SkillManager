@@ -19,7 +19,6 @@ F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\bin\Debug\net5.0\vhec.S
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\bin\Debug\net5.0\vhec.SkillInventory.DAL.dll
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\bin\Debug\net5.0\ref\vhec.SkillInventory.DAL.dll
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\bin\Debug\net5.0\vhec.SkillInventory.DAL.pdb
-F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.csproj.AssemblyReference.cache
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.GeneratedMSBuildEditorConfig.editorconfig
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.AssemblyInfoInputs.cache
 F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.AssemblyInfo.cs
@@ -43,3 +42,4 @@ F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\ref\vhec.SkillInventory.DAL.dll
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.pdb
 F:\Manhnv\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.genruntimeconfig.cache
+F:\Project\SkillManager\Back-End\vhec.SkillInventory.DAL\obj\Debug\net5.0\vhec.SkillInventory.DAL.csproj.AssemblyReference.cache

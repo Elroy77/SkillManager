@@ -1,5 +1,5 @@
 <template>
-    <div class="row">  
+    <div class="row">
         <div class="loading" v-if="loadingPage">loading..</div>
         <!-- Modal add -->
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true" >
@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label" style="margin-right:370px">Full name</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="employeePost.fullName" placeholder="Enter name...">
-                        </div>                   
+                        </div>
                         <div class="form-group" style="margin-right:360px">
                             <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePost.gender" class="form-control">
@@ -27,7 +27,7 @@
                             </option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group" style="margin-right:360px">
                             <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePost.jobPosition" class="form-control">
@@ -56,11 +56,11 @@
                                             {{ option.text }}
                                         </option>
                                     </select>
-                                </div> 
+                                </div>
                                 <div class="col-md-4" style="margin-top:37px">
                                     <button type="button" class="btn btn-info" id="btnAdd" name="btnAdd" v-on:click="addSkill()">Add</button>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
                         </table>
                         <table style="margin-left:10px">
@@ -70,15 +70,15 @@
                                     <input class="inputSkill" type="number" v-model="skill.skillID" disabled>
                                     <input class="inputSkill" type="number" v-model="skill.experience" disabled>
                                     <button type="button" class="btn btn-danger" v-on:click="removeSkill(skill)">X</button>
-                                </td>                                
+                                </td>
                             </tr>
-                        </table> 
+                        </table>
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="btnAdd" name="btnAdd" v-on:click="postEmployee()" data-dismiss="modal" >Create</button>
                         </div>
                     </form>
-                </div> 
+                </div>
             </div>
         </div>
         </div>
@@ -88,7 +88,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="update">Update employee</h5>                
+                <h5 class="modal-title" id="update">Update employee</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -103,7 +103,7 @@
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label" style="margin-right:370px">Full name</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="employeePut.fullName" placeholder="Enter name...">
-                        </div>                   
+                        </div>
                         <div class="form-group" style="margin-right:360px">
                             <label for="exampleInputEmail1" style="margin-right:30px">Gender</label>
                             <select v-model="employeePut.gender" class="form-control">
@@ -113,7 +113,7 @@
                             </option>
                             </select>
                         </div>
-                       
+
                         <div class="form-group" style="margin-right:360px">
                             <label for="exampleInputEmail1" style="margin-right:30px">Position</label>
                             <select v-model="employeePut.jobPosition" class="form-control">
@@ -131,7 +131,7 @@
                             <button type="submit" class="btn btn-primary" v-on:click="putEmployee()" data-dismiss="modal">Update</button>
                         </div>
                     </form>
-                </div> 
+                </div>
             </div>
         </div>
         </div>
@@ -162,11 +162,11 @@
                         <li class="list-group-item">Skill:</li>
                         <li class="list-group-item">Day Created: {{moment(part.dayCreated).format('YYYY-MM-DD')}}</li>
                         <li class="list-group-item">Update at: {{part.dayCreated}}</li>
-                    </ul> 
+                    </ul>
                     <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>                       
-                </div> 
+                    </div>
+                </div>
             </div>
         </div>
         </div>
@@ -206,7 +206,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr-shadow" v-for="(item,index) in listEmployee" :key="index">      
+                        <tr class="tr-shadow" v-for="(item,index) in listEmployee" :key="index">
                             <td>
                                 <span class="block-email">{{item.fullName}}</span>
                             </td>
@@ -254,7 +254,7 @@
             <li class="page-item"><a class="page-link" href="#">▶</a></li>
         </ul>
         </nav>
-    </div>                       
+    </div>
 </template>
 
 <script>
@@ -270,7 +270,7 @@
     export default {
         name: "Employee",
         data() {
-            return { 
+            return {
                 perPage: 3,
                 currentPage: 1,
                 listEmployee: {
@@ -284,11 +284,11 @@
                     gender:3,
                     jobPosition:5,
                     detailSkill: [
-                        {  
+                        {
                             skillID:1,
                             experience:11
-                        }                    
-                    ]                 
+                        }
+                    ]
                 },
                 skillEmployeePost:{
                     skillID:0,
@@ -297,7 +297,7 @@
                 employeePut: {
                     fullName: '',
                     gender:3,
-                    jobPosition:5           
+                    jobPosition:5
                 },
                 optionGenders: [
                 { text: 'Male', value: 0 },
@@ -355,7 +355,7 @@
                                 this.listEmployee = resp.data.data
                                 console.warn(resp.data.data)
                             })
-                    }            
+                    }
             },
             getEmployeePaging(page)
             {
@@ -363,14 +363,14 @@
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)
-                    })  
+                    })
             },
             searchEmployee(fullname, skillname) {
                 EmployeeService.getlistEmplNS(fullname,skillname)
                     .then((resp) => {
                         this.listEmployee = resp.data.data
                         console.warn(resp.data.data)
-                    }) 
+                    })
             },
             getEmployeeId(id) {
                 EmployeeService.getByIdEmpl(id)
@@ -379,7 +379,7 @@
                     console.log(this.part);
                 })
             },
-            postEmployee() 
+            postEmployee()
             {
                 console.warn(this.employeePost)
                 EmployeeService.postEmpl(this.employeePost)
@@ -387,7 +387,7 @@
                     this.getEmployee()
                 })
                 .then(response => console.log(response))
-                this.$toasted.show('Add new employee success!').goAway(1500)                
+                this.$toasted.show('Add new employee success!').goAway(1500)
             },
             putEmployee()
             {
@@ -397,7 +397,7 @@
                     this.getEmployee()
                 })
                 .then(response => console.log(response))
-                this.$toasted.show('Update employee success!').goAway(1500)                
+                this.$toasted.show('Update employee success!').goAway(1500)
             },
             deleteEmployee(id)
             {
@@ -415,28 +415,28 @@
                     .then((resp) => {
                         this.listSkill = resp.data.data
                         console.warn(resp.data.data)
-                    })  
-            }, 
+                    })
+            },
             addSkill() {
                 this.employeePost.detailSkill.push(
                     {skillID:this.skillEmployeePost.skillID,
                 experience:this.skillEmployeePost.experience}
-                )                
+                )
                 console.log(this.skillEmployeePost)
                 this.$toasted.show('Add skill success!').goAway(1500)
                        this.skillEmployeePost.skillID = 0,
-                       this.skillEmployeePost.experience = 0        
+                       this.skillEmployeePost.experience = 0
 
             },
             removeSkill(skill) {
                 this.employeePost.detailSkill.splice(skill,1)
-                this.$toasted.show('delete skill employee success!').goAway(1500)                
+                this.$toasted.show('delete skill employee success!').goAway(1500)
 
-            } 
+            }
         },
-        mounted() {  
-            this.getEmployee()    
-            this.getSkill() 
+        mounted() {
+            this.getEmployee()
+            this.getSkill()
         }
     }
 </script>

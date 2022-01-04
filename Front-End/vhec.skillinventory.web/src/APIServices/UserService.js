@@ -1,7 +1,7 @@
 import http from '../BaseConnect/Http-comman'
 class UserService {
-    Login() {
-        return http.post("api/Login/")
+    Login(info) {
+        return http.post("api/Login/", info)
     }
 }
 export default new UserService()

@@ -47,10 +47,8 @@
               </div>
             </form>
             </div>
-          </div>
-          
-        </div>
-        
+          </div>         
+        </div>     
       </div>
     </div>
   </div>
@@ -75,12 +73,12 @@
         methods:{
             LoginWeb() 
             {
-                UserService.Login()
+                UserService.Login(this.info)
                 .then((resp) => {
                     this.info = resp.data
                     let token = resp.data.token
                     localStorage.setItem('token',token)
-                    this.$router.push('/Overview')
+                    this.$router.push('/')
                 })
             },
         }

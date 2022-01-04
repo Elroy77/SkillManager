@@ -38,7 +38,8 @@ namespace vhec.SkillInventory.Api
         {
             services.AddDbContext<SkillManagerDbContext>(option =>
             {
-                option.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                //option.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
